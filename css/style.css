@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap');
+/* || RESET */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* || variables */
+
+:root{
+    --bg-primary: #f6f6f6;
+    --bg-secondary: #e8e8e8;
+    /* --text-color: #333333; */
+    --text-color: #e8e8e8;
+    --decor-color: #b90504;
+    --ff-normal: 'Poppins', sans-serif;    
+    --ff-heading:'Pacifico', cursive;
+    --fw: 600
+}
+/* || GENERAL STYLES */
+body{
+    font-family: var(--ff-normal);
+    color: var(--text-color);
+    font-weight: var(--fw);
+}
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer
+}
+a:visited{
+    color: var(--text-color);
+}
+
+button{
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+    padding: .75rem 1.25rem;
+    border: 2px solid var(--bg-primary);
+    font-size: 1.1rem;
+    background-color: transparent;
+    color: var(--text-color);
+}
+button:hover{
+    background-color: var(--bg-primary);
+}
+li {
+    list-style: none;
+}
+/* || Header */
+
+header {
+    position: relative;
+    min-height: 100vh;
+    max-width: 100%;
+    background-image: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, 0.5)), url(../img/porsche_black.jpg);
+    background-position: center;
+    background-size: cover;
+}
+header .write-btn{
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+}
+/* || Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    /* background-color: var(--bg-secondary); */
+}
+nav .page-logo{
+    font-family: var(--ff-heading);
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+    margin-left: 2rem;
+}
+nav .nav-links {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 40%;
+}
+nav .login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: .75rem;
+    margin-right: 2rem;
+    width: 20%;
+}
+nav .login button{
+    width:40%;
+}
+nav .nav-links .dropdown{
+    position: absolute;
+    display: none;
+}
+
+/* || Typography */
