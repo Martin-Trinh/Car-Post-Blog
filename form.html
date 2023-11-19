@@ -5,22 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="app.js" defer></script>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+        form input{
+            margin-bottom: .5rem
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="get">
+    <form action="" method="get" id="studentForm">
         <label for="name">Name</label>
-        <input type="text" id="name">
+        <input type="text" id="name"    name="name">
         <label for="surname">Surname</label>
-        <input type="text" id="surname">
+        <input type="text" id="surname" name="surname">
         <label for="password">Password</label>
-        <input type="password" id="password">
+        <input type="text" id="password" name="password" autocomplete="off">
         <label for="id-person">ID Student</label>
-        <input type="number" id="id-person">
+        <input type="number" id="id-person" name="id-person">
         <label for="faculty">Faculty</label>
-        <input type="text" id="faculty">
+        <input type="text" id="faculty" name="faculty">
         <label for="study-plan">Study plan</label>
-        <input type="text" id="study-plan">
+        <input type="text" id="study-plan" name="study-plan">
         <input type="submit" value="Submit">
+        <!-- <button id="submit">Submit</button> -->
     </form>
 </body>
 </html>

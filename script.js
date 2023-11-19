@@ -12,7 +12,8 @@ url = 'https://zwa.toad.cz/passwords.txt'
 
 fetch(url)
 .then((res)=>{
-    const response = res.json()
+    // const response = res.json()
+    console.log(res.text)
 })
 .catch((e)=>{
     console.log(e)
