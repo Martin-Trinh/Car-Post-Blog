@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Styling -->
     <link rel="stylesheet" href="css/style.css" />
+    
 </head>
 <body>
     <main class="container">
@@ -15,7 +16,7 @@
             <form action="/" method="POST" id="form">
                 <div class="form-field">
                     <label for="title-post">Title</label>
-                    <input type="text" placeholder="title-post" id="title-post" autocomplete="off">
+                    <input type="text" placeholder="title-post" id="title-post" autocomplete="off" required>
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>
@@ -33,14 +34,14 @@
                 </div>
                 <div class="form-field">
                     <label for="category-select">Article body</label>
-                    <textarea name="article-body" id="article-body" rows="10" placeholder="Write your article"></textarea>
+                    <textarea name="article-body" id="article-body" rows="10" placeholder="Write your article" required></textarea>
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>
                 </div>
                 <div class="form-field">
                     <label for="add-thumbnail">Add Thumbnail</label>
-                    <input type="file" name="add-thumbnail" id="add-thumbnail">
+                    <input type="file" name="add-thumbnail" id="add-thumbnail" required>
                 </div>
                 <button type="submit">Publish</button>
             </form>

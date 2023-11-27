@@ -8,14 +8,19 @@
     <!-- Styling -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Script -->
-    <script src="script.js" defer></script>
+    <script src="javascript/themeToggle.js" defer></script>
   </head>
   <body>
+    <div class="to-top-btn">
+      <button>
+        <a href="#navbar"><i class="fa-solid fa-arrow-up"></i></a>
+      </button>
+    </div>
     <header>
-      <nav class="navbar">
-        <h2 class="page-logo">
+      <nav class="navbar" id="navbar">
+        <h1 class="page-logo">
           <a href="index.html">Car Blog</a>
-        </h2>
+        </h1>
         <ul class="menu">
           <li class="topic">
             <a href="">Topics</a>
@@ -34,7 +39,7 @@
           <button class="button sign-up"><a href="sign-up.html">Sign Up</a></button>
         </div>
       </nav>
-      <div class="heading-text">
+      <div class="intro-text">
         <h2>Welcome to world of car's articles</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
@@ -45,6 +50,10 @@
       </div>
     </header>
     <main class="container">
+      <div class="theme-switch">
+        <input type="checkbox" name="color-switch" id="color-switch">
+        <label for="color-switch" class="color-switch"><div class="color-switch-toggle"></div></label>
+      </div>
       <section class="trending-article">
         <h2 class="section-heading">Trending articles</h2>
         <div class="trending-list">
