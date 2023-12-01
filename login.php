@@ -1,17 +1,7 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Styling -->
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="javascript/validation.js" defer></script>
-    <script src="javascript/validationLogin.js" defer></script>
-</head>
-<body>
+    <?php include 'partials/header.php' ?>
     <main class="container">
+        <script src="javascript/validation.js" defer></script>
+        <script src="javascript/validationLogin.js" defer></script>
         <div class="container form-container">
             <h2>Log In</h2>
             <form action="/" method="POST" id="form">
@@ -34,5 +24,8 @@
             </form>
         </div>
     </main>
+    <?php include './partials/footer.php' ?>
+
 </body>
+
 </html>

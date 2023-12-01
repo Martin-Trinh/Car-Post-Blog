@@ -17,28 +17,7 @@
       </button>
     </div>
     <header>
-      <nav class="navbar" id="navbar">
-        <h1 class="page-logo">
-          <a href="index.html">Car Blog</a>
-        </h1>
-        <ul class="menu">
-          <li class="topic">
-            <a href="">Topics</a>
-            <ul class="dropdown">
-              <li><a href="">Latest news</a></li>
-              <li><a href="">Reviews</a></li>
-              <li><a href="">Technology</a></li>
-            </ul>
-          </li>
-          <li><a href="">Images</a></li>
-          <li><a href="about-us.html">About us</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-        </ul>
-        <div class="login">
-          <button class="button login"><a href="login.html">Log in</a></button>
-          <button class="button sign-up"><a href="sign-up.html">Sign Up</a></button>
-        </div>
-      </nav>
+      <?php include 'partials/nav.php' ?>
       <div class="intro-text">
         <h2>Welcome to world of car's articles</h2>
         <p>
@@ -46,7 +25,7 @@
           molestias incidunt iusto aperiam. Quasi eius, veritatis neque
           inventore distinctio earum!
         </p>
-        <button class="write-btn"><a href="writePost.html">Write an article</a></button>
+        <button class="write-btn"><a href="writePost.php">Write an article</a></button>
       </div>
     </header>
     <main class="container">
@@ -66,7 +45,7 @@
             </div>
             <div class="article-info">
               <h3 class="article-heading">
-                <a href="article.html">
+                <a href="article.php">
                   Stála u zrodu Tinderu, pak založila seznamku vyladěnou pro
                   ženy. Teď se stahuje, byznys drhne
                 </a>
@@ -344,38 +323,6 @@
         </div>
       </section>
     </main>
-    <footer class="container">
-      <div class="footer-about">
-        <h2 class="page-logo footer-logo">Car Blog</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quae, ipsum aliquid optio veniam sed perspiciatis laborum dolore rerum? Impedit quis, provident est, veritatis similique natus rerum blanditiis eum recusandae accusamus</p>
-      </div>
-      <div class="faq-footer">
-        <h2>FAQ</h2>
-        <ul>
-          <li><a href="">How to write an article?</a></li>
-          <li><a href="">Who can see my post?</a></li>
-          <li><a href="">Who can edit my post?</a></li>
-          <li><a href="">Rules</a></li>
-        </ul>
-      </div>
-      <div class="my-account-footer">
-        <h2>My Account</h2>
-        <ul>
-          <li><a href="">My articles</a></li>
-          <li><a href="">My profile</a></li>
-        </ul>
-      </div>
-      <div class="contact-admin-footer">
-        <h2>Admin Contact</h2>
-        <div class="footer-contact">
-          <a href="" target="_blank"><i  class="fa-brands fa-facebook"></i></a>
-          <a href="" target="_blank"><i  class="fa-brands fa-instagram"></i></a>
-          <a href="" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-        </div>
-      </div>
-      <div class="copyright-footer">
-        <p>Copyright &copy; 2023 Car Blog. All rights reserved.</p>
-      </div>
-    </footer>
+    <?php include './partials/footer.php' ?>
   </body>
 </html>

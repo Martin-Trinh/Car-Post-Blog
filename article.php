@@ -1,37 +1,4 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-</head>
-<body>
-    <header class="page-banner">
-        <nav class="navbar">
-          <h2 class="page-logo">
-            <a href="index.html">Car Blog</a>
-          </h2>
-          <ul class="menu">
-            <li class="topic">
-              <a href="">Topics</a>
-              <ul class="dropdown">
-                <li><a href="">Latest news</a></li>
-                <li><a href="">Reviews</a></li>
-                <li><a href="">Technology</a></li>
-              </ul>
-            </li>
-            <li><a href="">Images</a></li>
-            <li><a href="about-us.html">About us</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-          </ul>
-          <div class="login">
-            <button class="button login"><a href="login.html">Log in</a></button>
-            <button class="button sign-up"><a href="sign-up.html">Sign Up</a></button>
-          </div>
-        </nav>
-      </header>
+<?php include 'partials/header' ?>
       <main class="container">
         <article class="container single-article">
             <div class="article-info single-article-info">
