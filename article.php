@@ -1,5 +1,7 @@
-<?php include 'partials/header' ?>
+<?php include 'partials/header.php' ?>
       <main class="container">
+      <?php include 'partials/toTopBtn.php';
+            include 'partials/themeBtn.php'; ?>
         <article class="container single-article">
             <div class="article-info single-article-info">
                 <h2 class="single-article-heading">Stála u zrodu Tinderu, pak založila seznamku vyladěnou pro

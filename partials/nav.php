@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav id="navbar">
     <h2 class="page-logo">
         <a href="index.php">Car Blog</a>
     </h2>

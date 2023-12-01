@@ -1,6 +1,8 @@
     <?php include 'partials/header.php' ?>
     
     <main class="container">
+    <?php include 'partials/toTopBtn.php';
+            include 'partials/themeBtn.php'; ?>
         <script src="javascript/validationWritePost.js" defer></script>
         <script src="javascript/validation.js" defer></script>
         <div class="container form-container add-post-container">

@@ -11,11 +11,6 @@
     <script src="javascript/themeToggle.js" defer></script>
   </head>
   <body>
-    <div class="to-top-btn">
-      <button>
-        <a href="#navbar"><i class="fa-solid fa-arrow-up"></i></a>
-      </button>
-    </div>
     <header>
       <?php include 'partials/nav.php' ?>
       <div class="intro-text">
@@ -29,10 +24,8 @@
       </div>
     </header>
     <main class="container">
-      <div class="theme-switch">
-        <input type="checkbox" name="color-switch" id="color-switch">
-        <label for="color-switch" class="color-switch"><div class="color-switch-toggle"></div></label>
-      </div>
+      <?php include 'partials/toTopBtn.php';
+            include 'partials/themeBtn.php'; ?>
       <section class="trending-article">
         <h2 class="section-heading">Trending articles</h2>
         <div class="trending-list">

@@ -1,5 +1,7 @@
 <?php include 'partials/header.php' ?>
     <main class="container">
+    <?php include 'partials/toTopBtn.php';
+            include 'partials/themeBtn.php'; ?>
         <script src="javascript/validation.js" defer></script>
         <script src="javascript/validationSignUp.js" defer></script>
         <div class="container form-container">
