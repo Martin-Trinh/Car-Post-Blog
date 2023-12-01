@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Styling -->
     <link rel="stylesheet" href="css/style.css" />
-    
+    <script src="javascript/validation.js" defer></script>
+    <script src="javascript/validationWritePost.js" defer></script>
+
 </head>
 <body>
     <main class="container">
@@ -16,7 +18,7 @@
             <form action="/" method="POST" id="form">
                 <div class="form-field">
                     <label for="title-post">Title</label>
-                    <input type="text" placeholder="title-post" id="title-post" autocomplete="off" required>
+                    <input type="text" placeholder="title-post" id="title-post" autocomplete="off" >
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>
@@ -24,6 +26,7 @@
                 <div class="form-field">
                     <label for="category-select">Choose category</label>
                     <select name="category-select" id="category-select">
+                        <option value="">-- Select category -- </option>
                         <option value="1">Technology</option>
                         <option value="1">News</option>
                         <option value="1">Reviews</option>
@@ -34,14 +37,14 @@
                 </div>
                 <div class="form-field">
                     <label for="category-select">Article body</label>
-                    <textarea name="article-body" id="article-body" rows="10" placeholder="Write your article" required></textarea>
+                    <textarea name="article-body" id="article-body" rows="10" placeholder="Write your article" ></textarea>
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>
                 </div>
                 <div class="form-field">
                     <label for="add-thumbnail">Add Thumbnail</label>
-                    <input type="file" name="add-thumbnail" id="add-thumbnail" required>
+                    <input type="file" name="add-thumbnail" id="add-thumbnail" >
                 </div>
                 <button type="submit">Publish</button>
             </form>

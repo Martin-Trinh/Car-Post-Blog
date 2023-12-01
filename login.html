@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Styling -->
     <link rel="stylesheet" href="css/style.css" />
-    <script src="javascript/themeToggle.js" defer></script>
+    <script src="javascript/validation.js" defer></script>
+    <script src="javascript/validationLogin.js" defer></script>
 </head>
 <body>
     <main class="container">
@@ -16,14 +17,14 @@
             <form action="/" method="POST" id="form">
                 <div class="form-field">
                     <label for="username">Username</label>
-                    <input type="text" placeholder="username" id="username" autocomplete="off" required>
+                    <input type="text" placeholder="username" id="username" autocomplete="off" autofocus>
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>
                 </div>
                 <div class="form-field">
                     <label for="password">Password</label>
-                    <input type="password" placeholder="password" id="password" autocomplete="off" required>
+                    <input type="password" placeholder="password" id="password" autocomplete="off">
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>

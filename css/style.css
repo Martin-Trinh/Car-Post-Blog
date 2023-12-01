@@ -528,10 +528,12 @@ form small{
 input:focus{
     outline: none;
 }
-.form-field.success input{
+.form-field.success input,
+.form-field.success textarea{
     border-color:var(--success-color)
 }
-.form-field.error input{
+.form-field.error input,
+.form-field.error textarea{
     border-color:var(--error-color)
 }
 .form-field.success .fa-circle-check{
