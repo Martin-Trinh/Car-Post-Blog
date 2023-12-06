@@ -7,7 +7,7 @@
         <script src="javascript/validation.js" defer></script>
         <div class="container form-container add-post-container">
             <h2>Write an article</h2>
-            <form action="/" method="POST" id="form">
+            <form action="/" method="POST" id="form" enctype="multipart/form-data">
                 <div class="form-field">
                     <label for="title-post">Title</label>
                     <input type="text" placeholder="title-post" id="title-post" autocomplete="off" >

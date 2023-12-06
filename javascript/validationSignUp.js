@@ -1,32 +1,36 @@
-const form = document.getElementById('form')
-const username = document.getElementById('username')
-const password = document.getElementById('password')
-const confirmPassword = document.getElementById('confirm-password')
-const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+const usernameField = document.getElementById('username')
+const passwordField = document.getElementById('password')
+const confirmPasswordField = document.getElementById('confirm-password')
 
-form.addEventListener('submit', (e) =>{
-    e.preventDefault()
-    const usernameValue = username.value.trim()
-    const passwordValue = password.value.trim()
-    const passwordConfirmValue = confirmPassword.value.trim()
+const form = document.getElementById('form')
+
+form.addEventListener('submit', (e)=>{
+    const usernameValue = usernameField.value.trim()
+    const passwordValue = passwordField.value.trim()
+    const confirmPassValue = confirmPasswordField.value.trim()
+    
     if(usernameValue === ''){
-        setError(username, 'Please enter username')
-    }else{
-        setSuccess(username)
+        setError(usernameField, 'Please enter username')
+        e.preventDefault()
+    }else {
+        setSuccess(usernameField)
     }
     if(passwordValue === ''){
-        setError(password, 'Your password is invalid')
-    }else if(!passwordRegex.test(passwordValue)){
-        setError(password, 'Your password must contain ')
+        setError(passwordField, 'Please enter password')
+        e.preventDefault()
+    }else{
+        setSuccess(passwordField)
+    }
+    if(confirmPassValue === ''){
+        setError(confirmPasswordField, 'Please confirm your password')
+        e.preventDefault()
+    }else if(passwordValue !== confirmPassValue){
+        setError(passwordField, 'Passwords does not match')
+        setError(confirmPasswordField, 'Passwords does not match')
+        e.preventDefault()
     }
     else{
-        setSuccess(password)
+        setSuccess(confirmPasswordField)
     }
-    if(passwordConfirmValue === ''){
-        setError(confirmPassword, 'This field cannot be blank')
-    }else if(passwordConfirmValue !== passwordValue){
-        setError(confirmPassword, 'Passwords does not match')
-    }else{
-        setSuccess(confirmPassword)
-    }
-})
+
+} )

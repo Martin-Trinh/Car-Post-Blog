@@ -1,0 +1,38 @@
+version: '3'
+services:
+  php_app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: zwa_app
+    depends_on:
+      - db
+    volumes:
+      - "./:/var/www/html"  
+    ports:
+      - 8000:80
+  db:
+    image: mysql:latest
+    container_name: app_db
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=securerootpassword
+      - MYSQL_DATABASE=app_db
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=pass
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "9906:3306"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+  
+volumes:
+  mysql_data: 

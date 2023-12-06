@@ -1,4 +1,4 @@
-<?php include 'partials/header.php' ?>
+<?php include '../include/header.php' ?>
       <main class="container">
       <?php include 'partials/toTopBtn.php';
             include 'partials/themeBtn.php'; ?>
