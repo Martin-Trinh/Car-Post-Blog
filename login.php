@@ -9,14 +9,14 @@
             <form action="/" method="POST" id="form">
                 <div class="form-field">
                     <label for="username">Username</label>
-                    <input type="text" placeholder="username" id="username" autocomplete="off" autofocus>
+                    <input type="text" placeholder="username" name="username" id="username" autocomplete="off" autofocus>
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>
                 </div>
                 <div class="form-field">
                     <label for="password">Password</label>
-                    <input type="password" placeholder="password" id="password" autocomplete="off">
+                    <input type="password" placeholder="password" name="password" id="password" autocomplete="off">
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>

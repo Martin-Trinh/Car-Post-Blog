@@ -10,22 +10,21 @@
             <form action="/" method="POST" id="form" enctype="multipart/form-data">
                 <div class="form-field">
                     <label for="title-post">Title</label>
-                    <input type="text" placeholder="title-post" id="title-post" autocomplete="off" >
+                    <input type="text" name="post-title" placeholder="title-post" id="title-post" autocomplete="off" >
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <small>Error message</small>
                 </div>
                 <div class="form-field">
-                    <label for="category-select">Choose category</label>
-                    <select name="category-select" id="category-select">
+                    <label for="category">Choose category</label>
+                    <select name="category" id="category">
                         <option value="">-- Select category -- </option>
-                        <option value="1">Technology</option>
-                        <option value="1">News</option>
-                        <option value="1">Reviews</option>
-                        <option value="1">Interesting facts</option>
-                        <option value="1">Technology</option>
-                        <option value="1">Technology</option>
+                        <option value="tech">Technology</option>
+                        <option value="news">News</option>
+                        <option value="review">Reviews</option>
+                        <option value="facts">Interesting facts</option>
                     </select>
+                    <small>Error message</small>
                 </div>
                 <div class="form-field">
                     <label for="category-select">Article body</label>
@@ -35,8 +34,9 @@
                     <small>Error message</small>
                 </div>
                 <div class="form-field">
-                    <label for="add-thumbnail">Add Thumbnail</label>
-                    <input type="file" name="add-thumbnail" id="add-thumbnail" >
+                    <label for="thumbnail">Add Thumbnail</label>
+                    <input type="file" name="thumbnail" id="thumbnail">
+                    <small>Error message</small>
                 </div>
                 <button type="submit">Publish</button>
             </form>

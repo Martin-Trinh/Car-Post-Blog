@@ -21,7 +21,7 @@
           molestias incidunt iusto aperiam. Quasi eius, veritatis neque
           inventore distinctio earum!
         </p>
-        <button class="write-btn"><a href="writePost.php">Write an article</a></button>
+        <button class="write-btn"><a href="addPost.php">Write an article</a></button>
       </div>
     </header>
     <main class="container">
