@@ -1,9 +1,9 @@
 <?php
 session_start();
 // toggle class
-$usernameState =  $_SESSION['errorMsg']['username'] ? 'error' : '';
-$passwordState = $_SESSION['errorMsg']['password'] ? 'error' : '';
-$confirmPassState = $_SESSION['errorMsg']['confirmPass'] ? 'error' : '';
+$usernameState = isset( $_SESSION['errorMsg']['username'])  ? 'error' : '';
+$passwordState = isset($_SESSION['errorMsg']['password'])  ? 'error' : '';
+$confirmPassState = isset($_SESSION['errorMsg']['confirmPass'])  ? 'error' : '';
 // value 
 $usernameValue = $_SESSION['formData']['username'] ?? '';
 $passwordValue = $_SESSION['formData']['password'] ?? '';
@@ -48,7 +48,7 @@ unset($_SESSION['formData']);
                 <small><?= $confirmPassErr ?></small>
             </div>
             <button type="submit" name="submit">Sign Up</button>
-            <p class="login-redirect">Already have an account? <a href="login.html">Log In</a></p>
+            <p class="login-redirect">Already have an account? <a href="login.php">Log In</a></p>
         </form>
     </div>
 </main>

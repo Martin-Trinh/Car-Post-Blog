@@ -18,15 +18,15 @@ if(isset($_POST['submit'])){
     if(isset($errorMsg)){
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
-        header('location: '. 'login.php');
+        header('location: '. '../login.php');
         die();
     }else{
-        header('location: '. 'success.php');
+        header('location: '. '../success.php');
         die();
     }
 
 }else{
-    header('location: '. 'login.php');
+    header('location: '. '../login.php');
     die();
 }
 ?>

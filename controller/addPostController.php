@@ -1,52 +1,51 @@
-<?php 
+<?php
 session_start();
 // require '../config/db_config.php';
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $title = filter_var($_POST['title-post'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $body = filter_var($_POST['article-body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category = filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $thumbnail = $_FILES['thumbnail'];
     // validation
     $errorMsg;
-    if($title === ''){
-        $errorMsg['title'] = 'Please enter title';
+    if ($title === '') {
+        $errorMsg['title-post'] = 'Please enter title';
     }
-    if($body === ''){
-        $errorMsg['password'] = 'Please add text to your post';
+    if ($body === '') {
+        $errorMsg['article-body'] = 'Please add text to your post';
     }
-    if($category === ''){
+    if ($category === '') {
         $errorMsg['category'] = 'Please select category';
     }
-    if(!$thumbnail['name']){
+    if (!$thumbnail['name']) {
         $errorMsg['thumbnail'] = 'Please add image to your post';
-    }else{
+    } else {
         $validFileExtensions = ['png', 'jpg', 'jpeg'];
         $extension = explode('.', $thumbnail['name']);
-        $extension = $extension[1];
-        if(in_array($extension, $validFileExtensions)){
+        $extension = strtolower($extension[1]);
+        $_SESSION['file'] = $_FILES;
+        if (!in_array($extension, $validFileExtensions)) {
             $errorMsg['thumbnail'] = 'Invalid file extension';
-        }else if($thumbnail['size'] < 1_000_000){
+        } else if ($thumbnail['size'] > 1_000_000) {
             $errorMsg['thumbnail'] = 'File to big';
-        }else{
+        } else {
             // upload file
             $thumbnailName = time() . $thumbnail['name'];
             $thumbnailTmpName = $thumbnail['tmp_name'];
-            $thumbnailPath = 'images/' . $thumbnailName;
+            $thumbnailPath = '../img/' . $thumbnailName;
             move_uploaded_file($thumbnailTmpName, $thumbnailPath);
         }
     }
-    if(isset($errorMsg)){
+    if (isset($errorMsg)) {
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
-        header('location: '. 'addPost.php');
+        header('location: ' . '../addPost.php');
         die();
-    }else{
-        header('location: '. 'index.php');
+    } else {
+        header('location: ' . '../success.php');
         die();
     }
-
-}else{
-    header('location: '. 'addPost.php');
+} else {
+    header('location: ' . '../addPost.php');
     die();
 }
-?>

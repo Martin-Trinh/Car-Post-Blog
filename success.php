@@ -1,1 +1,4 @@
-<?php echo "Sign up succesfully" ?>
+<?php
+ session_start();
+ print_r($_SESSION['file']);
+echo "Sign up succesfully" ?>;
