@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <?php include '../include/header.php' ?>
       <main class="container">
       <?php include 'partials/toTopBtn.php';

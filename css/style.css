@@ -266,6 +266,18 @@ nav {
     display: block;
 }
 
+.nav-profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+}
+.logout-btn{
+    background-color: var(--decor-color);
+    padding: .5rem;
+    border-radius: .5rem;
+
+}
 
 /* || Trending section styles */
 
@@ -526,6 +538,20 @@ form i{
 form small{
     visibility: hidden;
 }
+
+.server-msg{
+    margin-bottom: 1.5rem ;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    border-radius: 0.5rem;
+}
+.server-msg.error{
+    background-color: var(--error-color);
+}
+.server-msg.success{
+    background-color: var(--success-color);
+}
 input:focus{
     outline: none;
 }
@@ -533,6 +559,7 @@ input:focus{
 .form-field.success textarea{
     border-color:var(--success-color)
 }
+
 .form-field.error input,
 .form-field.error textarea{
     border-color:var(--error-color)

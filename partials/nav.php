@@ -15,8 +15,15 @@
         <li><a href="about-us.php">About us</a></li>
         <li><a href="faq.php">FAQ</a></li>
     </ul>
-    <div class="login">
-        <button class="button login"><a href="login.php">Log in</a></button>
-        <button class="button sign-up"><a href="sign-up.php">Sign Up</a></button>
-    </div>
+    <?php if(isset($_SESSION['user'])): ?>
+        <div class="nav-profile">
+            <a class="profile-btn" href="../index.php"><?= $_SESSION['user']['username'] . " " . $_SESSION['user']['role']?></a>
+            <a class="logout-btn" href="../controller/logout.php">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    <?php else: ?>
+        <div class="login">
+            <button class="login"><a href="login.php">Log in</a></button>
+            <button class="sign-up"><a href="sign-up.php">Sign Up</a></button>
+        </div>
+    <?php endif ?>
 </nav>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-// require '../config/db_config.php';
+require '../config/db_config.php';
 if (isset($_POST['submit'])) {
     $title = filter_var($_POST['title-post'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $body = filter_var($_POST['article-body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);

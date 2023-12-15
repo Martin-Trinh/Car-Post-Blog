@@ -13,8 +13,11 @@ $usernameErr =  $_SESSION['errorMsg']['username'] ?? '';
 $passwordErr = $_SESSION['errorMsg']['password'] ?? '';
 $confirmPassErr = $_SESSION['errorMsg']['confirmPass'] ?? '';
 
+$errorMsg = $_SESSION['errorMsg']['logicError'] ?? '';
+$successMsg = $_SESSION['successMsg'] ?? '';
 unset($_SESSION['errorMsg']);
 unset($_SESSION['formData']);
+unset($_SESSION['successMsg']);
 ?>
 
 <?php include 'partials/header.php' ?>
@@ -25,6 +28,12 @@ unset($_SESSION['formData']);
     <script src="javascript/validationSignUp.js" defer></script>
     <div class="container form-container">
         <h2>Sign Up</h2>
+        <?php 
+            if($successMsg)  
+                echo '<div class="server-msg success">'. $successMsg . '</div>'; 
+            if($errorMsg)
+                echo '<div class="server-msg error">'. $errorMsg . '</div>'; 
+        ?>
         <form action="controller/signUpController.php" method="POST" id="form">
             <div class="form-field <?= $usernameState ?>">
                 <label for="username">Username</label>
