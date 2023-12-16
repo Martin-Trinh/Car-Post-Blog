@@ -1,12 +1,14 @@
 <?php
 session_start();
-require '../config/db_config.php';
+require_once '../config/db_config.php';
+require_once 'functions.php';
+
 if (isset($_POST['submit'])) {
     $title = filter_var($_POST['title-post'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $body = filter_var($_POST['article-body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category = filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $thumbnail = $_FILES['thumbnail'];
-    // validation
+    // validation   
     $errorMsg;
     if ($title === '') {
         $errorMsg['title-post'] = 'Please enter title';
@@ -34,6 +36,7 @@ if (isset($_POST['submit'])) {
             $thumbnailTmpName = $thumbnail['tmp_name'];
             $thumbnailPath = '../img/' . $thumbnailName;
             move_uploaded_file($thumbnailTmpName, $thumbnailPath);
+            addPost($conn, $_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName);
         }
     }
     if (isset($errorMsg)) {
