@@ -28,27 +28,27 @@ if (isset($_POST['submit'])) {
         $_SESSION['file'] = $_FILES;
         if (!in_array($extension, $validFileExtensions)) {
             $errorMsg['thumbnail'] = 'Invalid file extension';
-        } else if ($thumbnail['size'] > 1_000_000) {
+        } else if ($thumbnail['size'] > 2_000_000) {
             $errorMsg['thumbnail'] = 'File to big';
-        } else {
-            // upload file
-            $thumbnailName = time() . $thumbnail['name'];
-            $thumbnailTmpName = $thumbnail['tmp_name'];
-            $thumbnailPath = '../img/' . $thumbnailName;
-            move_uploaded_file($thumbnailTmpName, $thumbnailPath);
-            addPost($conn, $_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName);
         }
     }
     if (isset($errorMsg)) {
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
-        header('location: ' . '../addPost.php');
+        header('location: ../addPost.php');
         die();
     } else {
-        header('location: ' . '../success.php');
+        // upload file
+        $thumbnailName = time() . $thumbnail['name'];
+        $thumbnailTmpName = $thumbnail['tmp_name'];
+        $thumbnailPath = '../img/' . $thumbnailName;
+        move_uploaded_file($thumbnailTmpName, $thumbnailPath);
+        addPost($conn, $_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName);
+        
+        header('location: ../success.php');
         die();
     }
 } else {
-    header('location: ' . '../addPost.php');
+    header('location: ../addPost.php');
     die();
 }

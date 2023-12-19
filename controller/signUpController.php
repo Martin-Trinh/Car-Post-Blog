@@ -10,13 +10,13 @@ if(isset($_POST['submit'])){
     
     // validation
     $errorMsg;
-    if($username === ''){
+    if(!$username){
         $errorMsg['username'] = 'Please enter username';
     }
-    if($password === ''){
+    if(!$password){
         $errorMsg['password'] = 'Please enter password';
     }
-    if($confirmPassword === ''){
+    if(!$confirmPassword){
         $errorMsg['confirmPass'] = 'Please enter confirm password';
         
     }

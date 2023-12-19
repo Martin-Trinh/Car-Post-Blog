@@ -10,10 +10,17 @@ $bodyState = isset($_SESSION['errorMsg']['article-body']) ? 'error' : '';
 $thumbnailState = isset($_SESSION['errorMsg']['thumbnail']) ? 'error' : '';
 $categoryState = isset($_SESSION['errorMsg']['category']) ? 'error' : '';
 
-$titleValue = $_SESSION['formData']['title-post'] ?? '';
-$bodyValue = $_SESSION['formData']['article-body'] ?? '';
-$thumbnailValue = $_SESSION['formData']['thumbnail'] ?? '';
-$categoryValue = $_SESSION['formData']['category'] ?? '';
+if(isset($_SESSION['formData'])){
+    $titleValue = $_SESSION['formData']['title-post'] ?? '';
+    $bodyValue = $_SESSION['formData']['article-body'] ?? '';
+    $thumbnailValue = $_SESSION['formData']['thumbnail'] ?? '';
+    $categoryValue = $_SESSION['formData']['category'] ?? '';
+}else{
+    $titleValue = $post['title'];
+    $bodyValue = $post['body'];
+    $thumbnailValue = $post['$thumbnail'];
+    $categoryValue = $post['category'];
+}
 
 $titleErr = $_SESSION['errorMsg']['title-post'] ?? '';
 $bodyErr = $_SESSION['errorMsg']['arcticle-body'] ?? '';
@@ -32,6 +39,8 @@ unset($_SESSION['formData']);
     <div class="container form-container add-post-container">
         <h2>Write an article</h2>
         <form action="./controller/editPostController.php" method="POST" id="form" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $post['id']?>">
+            <input type="hidden" name="prev-thumbnail" value="<?= $post['thumbnail'] ?>">
             <div class="form-field <?= $titleState ?>">
                 <label for="title-post">Title</label>
                 <input type="text" name="title-post" value="<?= $titleValue ?>" placeholder="Post title" id="title-post" autocomplete="off">

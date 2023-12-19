@@ -27,10 +27,10 @@ if(isset($_POST['submit'])){
             }
         }
     }else{
-        if($username === ''){
+        if(!$username){
             $errorMsg['username'] = 'Please enter username';
         }
-        if($password === ''){
+        if(!$password){
             $errorMsg['password'] = 'Please enter password';
         }
     }

@@ -15,7 +15,7 @@ if(isset($_GET['id'])){
             include 'partials/themeBtn.php'; ?>
         <article class="container single-article">
             <button><a href="editPost.php?id=<?= $id ?>">Edit</a></button>
-            <button><a href="deletePost.php?id=<? $id ?>">Delete</a></button>
+            <button><a href="deletePostController.php?id=<? $id ?>">Delete</a></button>
             <div class="article-info single-article-info">
                 <h2 class="single-article-heading"><?= $post['title']?></h2>
                 <a class="category-btn"><?= $post['category']?></a>
