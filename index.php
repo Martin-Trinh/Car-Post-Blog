@@ -29,27 +29,10 @@ session_start();
     </header>
     <main class="container">
       <?php include 'partials/toTopBtn.php';
-            include 'partials/themeBtn.php'; ?>
-      <section class="trending-article">
-        <h2 class="section-heading">Trending articles</h2>
-        <div class="trending-list">
-          <?php
-            for ($i = 0; $i < 3; $i++){
-              include 'partials/trendingPostPreview.php';
-            } 
-          ?>
-        </div>
-      </section>
-      <section class="latest-article">
-        <h2 class="section-heading">Latest articles</h2>
-        <div class="latest-list">
-        <?php
-            for ($i = 0; $i < 6; $i++){
-              include 'partials/latestPostPreview.php';
-            } 
-        ?>
-        </div>
-      </section>
+            include 'partials/themeBtn.php'; 
+            include 'partials/trendingPostPreview.php';
+            include 'partials/latestPostPreview.php'
+      ?>
     </main>
     <?php include './partials/footer.php' ?>
   </body>

@@ -1,6 +1,11 @@
 <?php
-$error;
-$error['co phai dem qua thuc trang'] = 1;
-$error['adasdsad'] = 3;
-echo isset($error);
-print_r($error);
+require_once ('config/db_config.php');
+require_once('controller/functions.php');
+
+echo "<pre>";
+$post = selectPostById($conn,10);
+if(isset($post))
+    echo "something";
+else
+    echo "nothing";
+echo "</pre>";

@@ -1,31 +1,38 @@
-<article class="article">
-            <div class="article-img">
-              <img
-                src="https://images.unsplash.com/photo-1685097879207-1a897190300f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="article img"
-              />
-            </div>
-            <div class="article-info">
-              <h3 class="article-heading">
-                <a href="article.php">
-                  Stála u zrodu Tinderu, pak založila seznamku vyladěnou pro
-                  ženy. Teď se stahuje, byznys drhne
-                </a>
-              </h3>
-              <a class="category-btn">Technology</a>
-              <p class="article-description">
-                Společnost Bumble zažívá akciový pád podobně jako některé další
-                startupové hvězdy. Změny čekají i zakladatelku Whitney Wolfe
-                Herdovou.
-              </p>
-              <div class="article-data">
-                <div class="author">
-                  <p><a class="article-author" href="">Author</a></p>
-                  <p class="article-date">13 January 2023</p>
-                </div>
-                <div class="likes">
-                  <p>10 Likes</p>
-                </div>
-              </div>
-            </div>
-          </article>
+<?php 
+  require_once ('config/db_config.php');
+  require_once('controller/functions.php');
+  // get array of posts from database
+  $allPosts = selectTrendingPosts($conn, 3);
+?>
+<section class="trending-article">
+  <h2 class="section-heading">Trending articles</h2>
+  <div class="trending-list">
+    <?php for($i = 0; $i < count($allPosts); $i++): ?>
+    <article class="article">
+      <div class="article-img">
+        <img src="img/<?= $allPosts[$i]['thumbnail'] ?>" alt="article img" />
+      </div>
+      <div class="article-info">
+        <h3 class="article-heading">
+          <a href="article.php?id=<?=$allPosts[$i]['post_id']?>">
+            <?= $allPosts[$i]['title'] ?>
+          </a>
+        </h3>
+        <a class="category-btn"><?= $allPosts[$i]['category'] ?></a>
+        <p class="article-description">
+          <?= $allPosts[$i]['body'] ?>
+        </p>
+        <div class="article-data">
+          <div class="author">
+            <p><a class="article-author" href=""><?= $allPosts[$i]['username'] ?></a></p>
+            <p class="article-date"><?= $allPosts[$i]['publish_datetime'] ?></p>
+          </div>
+          <div class="likes">
+            <p><?= $allPosts[$i]['likes'] ?> Likes</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    <?php endfor ?>
+  </div>
+</section>
