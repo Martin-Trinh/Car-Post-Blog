@@ -13,9 +13,10 @@ if(isset($_GET['id'])){
       <main class="container">
       <?php include 'partials/toTopBtn.php';
             include 'partials/themeBtn.php'; ?>
+        <?php if($post):?>
         <article class="container single-article">
             <button><a href="editPost.php?id=<?= $id ?>">Edit</a></button>
-            <button><a href="deletePostController.php?id=<? $id ?>">Delete</a></button>
+            <button><a href="controller/deletePostController.php?id=<?= $id ?>">Delete</a></button>
             <div class="article-info single-article-info">
                 <h2 class="single-article-heading"><?= $post['title']?></h2>
                 <a class="category-btn"><?= $post['category']?></a>
@@ -39,6 +40,9 @@ if(isset($_GET['id'])){
                 <?= $post['body'] ?>
             </div>
         </article>
+        <?php else: ?>
+            <div class="server-msg error">Article not found</div>
+        <?php endif ?>
       </main>
     <?php include 'partials/footer.php' ?>
 </body>

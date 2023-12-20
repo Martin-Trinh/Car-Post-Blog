@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
     if (isset($errorMsg)) {
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
-        header('location: ../addPost.php');
+        header('Location: ../addPost.php');
         die();
     } else {
         // upload file
@@ -45,10 +45,10 @@ if (isset($_POST['submit'])) {
         move_uploaded_file($thumbnailTmpName, $thumbnailPath);
         addPost($conn, $_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName);
         
-        header('location: ../success.php');
+        header('Location: ../success.php');
         die();
     }
 } else {
-    header('location: ../addPost.php');
+    header('Location: ../addPost.php');
     die();
 }

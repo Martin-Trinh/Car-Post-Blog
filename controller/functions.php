@@ -1,6 +1,4 @@
 <?php
-// require_once '../config/db_config.php';
-
 
 function usernameFind($conn, $username){
     $sql = "SELECT * FROM users where username = ?";
@@ -49,12 +47,12 @@ function selectAllPosts($conn){
     $sql = "SELECT posts.post_id ,posts.title, posts.body, posts.category, posts.publish_datetime, posts.likes, posts.thumbnail,users.username 
     FROM posts JOIN users ON posts.user_id = users.user_id
     ORDER BY posts.publish_datetime DESC";
+    $data = array();
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         mysqli_stmt_close($stmt);
         return false;
     }
-
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while($row = mysqli_fetch_assoc($result)){
@@ -69,8 +67,8 @@ function selectTrendingPosts($conn, $numRow){
     FROM posts JOIN users ON posts.user_id = users.user_id
     ORDER BY posts.publish_datetime DESC
     LIMIT ?";
-
-$stmt = mysqli_stmt_init($conn);
+    $data = array();
+    $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         mysqli_stmt_close($stmt);
         return false;
@@ -89,7 +87,7 @@ function selectPostById($conn, $id){
     $sql = "SELECT posts.post_id, posts.title, posts.body, posts.category, posts.publish_datetime, posts.likes, posts.thumbnail,users.username 
     FROM posts JOIN users ON posts.user_id = users.user_id 
     WHERE posts.post_id = ?";
-
+    $data = array();
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         mysqli_stmt_close($stmt);
@@ -104,8 +102,8 @@ function selectPostById($conn, $id){
 }
 
 function updatePostById($conn, $id, $title, $category, $body, $thumbnail){
-    $sql = "UPDATE posts SET posts.title=?, posts.body=?, posts.category=?, posts.thumbnail
-    WHERE posts.post_id = ?";
+    $sql = "UPDATE posts SET posts.title=?, posts.body=?, posts.category=?, posts.thumbnail=?
+    WHERE posts.post_id=?";
 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){

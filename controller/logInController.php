@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
         // find user in database
         $user = usernameFind($conn, $username);
         // $_SESSION['queryRes'] = $user;
-        // header('location: ../success.php');
+        // header('Location: ../success.php');
         if($user === false){
             $errorMsg['logicError'] = 'Cannot find user';
         }else{
@@ -37,15 +37,15 @@ if(isset($_POST['submit'])){
     if(isset($errorMsg)){
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
-        header('location: '. '../login.php');
+        header('Location: '. '../login.php');
         die();
     }else{
-        header('location: '. '../index.php');
+        header('Location: '. '../index.php');
         die();
     }
 
 }else{
-    header('location: '. '../login.php');
+    header('Location: '. '../login.php');
     die();
 }
 ?>

@@ -10,14 +10,14 @@ if(isset($_GET['id'])){
     $post = selectPostById($conn, $id);
     if($post){
         // delete file in folder
-        unlink('../img' . $post['thumbnail']);
+        unlink('../img/' . $post['thumbnail']);
+        // delete post from db
+        deletePostById($conn, $id);
     }else{
-        header('location: ../test.php');
+        header('Location: ../test.php');
         die();
     }
 
-    // delete post from db
-    deletePostById($conn, $id);
 }
-header('location: ../index.php');
+header('Location: ../index.php');
 die();

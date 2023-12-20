@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
     if(isset($errorMsg)){
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
-        header('location: '. '../sign-up.php');
+        header('Location: '. '../sign-up.php');
         die();
     }else{
         
@@ -35,16 +35,16 @@ if(isset($_POST['submit'])){
         if(!usernameFind($conn, $username)){
             createUser($conn, $username, $password, 'admin');
             $_SESSION['successMsg'] = 'Signed up successfully';
-            header('location: '. '../login.php');
+            header('Location: '. '../login.php');
             die();
         }
         else{
             $_SESSION['errorMsg']['logicError'] = 'Username already taken';
-            header('location: ../sign-up.php');
+            header('Location: ../sign-up.php');
             die();
         }
     }
 }else{
-    header('location: '. '../sign-up.php');
+    header('Location: '. '../sign-up.php');
     die();
 }

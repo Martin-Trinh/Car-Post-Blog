@@ -6,6 +6,9 @@
 ?>
 <section class="trending-article">
   <h2 class="section-heading">Trending articles</h2>
+  <?php if(count($allPosts) === 0): ?>
+    <div class="server-msg error">No trending articles</div>
+  <?php else: ?>
   <div class="trending-list">
     <?php for($i = 0; $i < count($allPosts); $i++): ?>
     <article class="article">
@@ -35,4 +38,5 @@
     </article>
     <?php endfor ?>
   </div>
+  <?php endif ?>
 </section>

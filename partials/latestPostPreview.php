@@ -8,6 +8,9 @@
 ?>
 <section class="latest-article">
   <h2 class="section-heading">Latest articles</h2>
+  <?php if(count($allPosts) === 0): ?>
+    <div class="server-msg error">No latest articles</div>
+  <?php else: ?>
   <div class="latest-list">
     <?php for ($i = 0; $i < count($allPosts); $i++):?>
     <article class="article">
@@ -37,4 +40,5 @@
     </article>
     <?php endfor ?>
   </div>
+  <?php endif ?>
 </section>

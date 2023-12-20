@@ -46,15 +46,15 @@ if (isset($_POST['submit'])) {
     if (isset($errorMsg)) {
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
-        header('location: ' . '../editPost.php');
+        header('Location: ' . '../editPost.php');
         die();
     } else {
         // update post in db
         updatePostById($conn, $id, $title, $category, $body, $thumbnailName ?? $prev_thumbnail);
-        header('location: ' . '../success.php');
+        header('Location: ' . '../success.php');
         die();
     }
 } else {
-    header('location: ' . '../index.php');
+    header('Location: ' . '../index.php');
     die();
 }

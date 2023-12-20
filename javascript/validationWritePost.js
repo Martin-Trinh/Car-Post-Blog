@@ -33,10 +33,10 @@ form.addEventListener('submit', e => {
         setSuccess(bodyText)
     }
 
-    if (!file.files.length) {
-        setError(file, 'Please upload a file')
-        e.preventDefault()
-    } else {
-        setSuccess(file)
-    }
+    // if (!file.files.length) {
+    //     setError(file, 'Please upload a file')
+    //     e.preventDefault()
+    // } else {
+    //     setSuccess(file)
+    // }
 })
