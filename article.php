@@ -21,10 +21,10 @@ if (isset($_GET['id'])) {
             <?php endif ?>
             <div class="article-info single-article-info">
                 <h2 class="single-article-heading"><?= $post['title'] ?></h2>
-                <a class="category-btn"><?= $post['category'] ?></a>
+                <a class="category-btn" href="category.php?category=<?= $allPosts[$i]['category'] ?>"><?= $post['category'] ?></a>
                 <div class="article-data">
                     <div class="author">
-                        <p><a class="article-author" href=""><?= $post['username'] ?></a></p>
+                        <p><a class="article-author" href="profile.php?username=<?= $post['username']?>"><?= $post['username'] ?></a></p>
                         <p class="article-date"><?= $post['publish_datetime'] ?></p>
                     </div>
                     <div class="likes">

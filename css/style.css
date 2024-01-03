@@ -363,6 +363,7 @@ nav {
     padding:2rem 0;
     font-size: 2rem;
     border-bottom: 2px solid var(--decor-color);
+    text-transform: capitalize;
 }
 
 .article{

@@ -65,13 +65,13 @@ if(is_int($pageNum) && $pageNum > 0 && $pageNum <= $lastPage){
                     $post['title'] .
                   '</a>
                 </h3>
-                <a class="category-btn">' . $post['category'] . '</a>
+                <a class="category-btn" href="category.php?category='. $post['category'] .'">' . $post['category'] . '</a>
                 <p class="article-description">
                   '. substr($post['body'], 0, 150) . '  ...' .
                 '</p>
                 <div class="article-data">
                   <div class="author">
-                    <p><a class="article-author" href="">'. $post['username'] . '</a></p>
+                    <p><a class="article-author" href="../profile.php?username=' . $post['username'] . '">'. $post['username'] . '</a></p>
                     <p class="article-date">' . $post['publish_datetime'] . '</p>
                   </div>
                   <div class="likes">

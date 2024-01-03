@@ -7,9 +7,10 @@
         <li class="topic">
             <a href="">Topics</a>
             <ul class="dropdown">
-                <li><a href="">Latest news</a></li>
-                <li><a href="">Reviews</a></li>
-                <li><a href="">Technology</a></li>
+                <li><a href="../category.php?category=News">News</a></li>
+                <li><a href="../category.php?category=Interesting facts">Interesting facts</a></li>
+                <li><a href="../category.php?category=Reviews">Reviews</a></li>
+                <li><a href="../category.php?category=Technology">Technology</a></li>
             </ul>
         </li>
         <li><a href="">Images</a></li>
@@ -18,7 +19,7 @@
     </ul>
     <?php if(isset($_SESSION['user'])): ?>
         <div class="nav-profile">
-            <a class="profile-btn" href="../index.php"><?= $_SESSION['user']['username'] ?></a>
+            <a class="profile-btn" href="../profile.php?username=<?= $_SESSION['user']['username']?>"><?= $_SESSION['user']['username'] ?></a>
             <small><?= $_SESSION['user']['role'] ?></small>
             <a class="logout-btn" href="../controller/logout.php">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
         </div>

@@ -21,13 +21,13 @@
             <?= $allPosts[$i]['title'] ?>
           </a>
         </h3>
-        <a class="category-btn"><?= $allPosts[$i]['category'] ?></a>
+        <a class="category-btn" href="category.php?category=<?=$allPosts[$i]['category']?>"><?= $allPosts[$i]['category'] ?></a>
         <p class="article-description">
           <?= substr($allPosts[$i]['body'],0, 300) . '  ...'?>
         </p>
         <div class="article-data">
           <div class="author">
-            <p><a class="article-author" href=""><?= $allPosts[$i]['username'] ?></a></p>
+            <p><a class="article-author" href="../profile.php?username=<?= $allPosts[$i]['username']?>"><?= $allPosts[$i]['username'] ?></a></p>
             <p class="article-date"><?= $allPosts[$i]['publish_datetime'] ?></p>
           </div>
           <div class="likes">

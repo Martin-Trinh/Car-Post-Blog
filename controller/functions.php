@@ -164,3 +164,49 @@ function selectPostsPagination($conn, $limit, $offset){
     mysqli_stmt_close($stmt);
     return $data;
 }
+
+function selectPostsByCategory($conn, $category, $limit, $offset){
+    $sql = "SELECT posts.post_id ,posts.title, posts.body, posts.category, posts.publish_datetime, posts.likes, posts.thumbnail, users.username 
+    FROM posts JOIN users ON posts.user_id = users.user_id 
+    WHERE posts.category = ?
+    ORDER BY posts.publish_datetime DESC
+    LIMIT ? 
+    OFFSET ?";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        mysqli_stmt_close($stmt);
+        return null;
+    }
+    mysqli_stmt_bind_param($stmt, 'sii', $category, $limit, $offset);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    while($row = mysqli_fetch_assoc($result)){
+        $data[] = $row;
+    }
+    mysqli_stmt_close($stmt);
+    return $data;
+}
+
+function selectPostsFromUser($conn, $id, $limit, $offset){
+    $sql = "SELECT posts.post_id ,posts.title, posts.body, posts.category, posts.publish_datetime, posts.likes, posts.thumbnail, users.username 
+    FROM posts JOIN users ON posts.user_id = users.user_id 
+    WHERE posts.user_id = ?
+    ORDER BY posts.publish_datetime DESC
+    LIMIT ? 
+    OFFSET ?";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        mysqli_stmt_close($stmt);
+        return null;
+    }
+    mysqli_stmt_bind_param($stmt, 'iii', $id, $limit, $offset);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    while($row = mysqli_fetch_assoc($result)){
+        $data[] = $row;
+    }
+    mysqli_stmt_close($stmt);
+    return $data;
+}
