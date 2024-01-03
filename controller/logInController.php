@@ -1,7 +1,8 @@
 <?php 
+session_start();
 require_once '../config/db_config.php';
 require_once 'functions.php';
-session_start();
+
 
 if(isset($_POST['submit'])){
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -10,20 +11,18 @@ if(isset($_POST['submit'])){
     $errorMsg;
     if($username !== '' && $password !== ''){
         // find user in database
-        $user = usernameFind($conn, $username);
-        // $_SESSION['queryRes'] = $user;
-        // header('Location: ../success.php');
+        $user = findUserByUsername($conn, $username);
         if($user === false){
-            $errorMsg['logicError'] = 'Cannot find user';
+            $_SESSION['error'] = 'Cannot find user';
         }else{
             if(password_verify($password, $user['PASSWORD'])){
-                $_SESSION['successMsg'] = 'Login successfully';
+                $_SESSION['success'][] = 'Log in successfuly';
                 $_SESSION['user']['user_id'] = $user['user_id'];
                 $_SESSION['user']['username'] = $user['username'];
                 $_SESSION['user']['role'] = $user['role'];
 
             }else{
-                $errorMsg['logicError'] = 'Incorrect password';
+                $errorMsg['password'] = 'Incorrect password';
             }
         }
     }else{

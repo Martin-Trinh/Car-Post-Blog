@@ -10,12 +10,8 @@ $passwordValue = $_SESSION['formData']['password'] ?? '';
 $usernameErr = $_SESSION['errorMsg']['username'] ?? '';
 $passwordErr = $_SESSION['errorMsg']['password'] ?? '';
 
-$errorMsg = $_SESSION['errorMsg']['logicError'] ?? '';
-$successMsg = $_SESSION['successMsg'] ?? '';
-
 unset($_SESSION['errorMsg']);
 unset($_SESSION['formData']);
-unset($_SESSION['successMsg']);
 ?>   
     <?php include 'partials/header.php' ?>
     <main class="container">
@@ -25,12 +21,6 @@ unset($_SESSION['successMsg']);
         <script src="javascript/validationLogin.js" defer></script>
         <div class="container form-container">
             <h2>Log In</h2>
-            <?php 
-            if($successMsg)  
-                echo '<div class="server-msg success">'. $successMsg . '</div>'; 
-            if($errorMsg)
-                echo '<div class="server-msg error">'. $errorMsg . '</div>'; 
-            ?>
             <form action="./controller/logInController.php" method="POST" id="form">
                 <div class="form-field <?= $usernameState?>">
                     <label for="username">Username</label>

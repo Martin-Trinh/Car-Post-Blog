@@ -27,9 +27,10 @@ if (isset($_POST['submit'])) {
         $extension = strtolower($extension[1]);
         $_SESSION['file'] = $_FILES;
         if (!in_array($extension, $validFileExtensions)) {
-            $errorMsg['thumbnail'] = 'Invalid file extension';
-        } else if ($thumbnail['size'] > 2_000_000) {
-            $errorMsg['thumbnail'] = 'File to big';
+            $errorMsg['thumbnail'] = 'Invalid file extension, only png, jpg and jpeg are allowed';
+        }
+        if ($thumbnail['size'] > 2_000_000) {
+            $errorMsg['thumbnail'] = 'File size must be less than 2Mb';
         }
     }
     if (isset($errorMsg)) {
@@ -39,14 +40,25 @@ if (isset($_POST['submit'])) {
         die();
     } else {
         // upload file
-        $thumbnailName = time() . $thumbnail['name'];
-        $thumbnailTmpName = $thumbnail['tmp_name'];
+        $thumbnailName = time() . filter_var($thumbnail['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $thumbnailTmpName = filter_var($thumbnail['tmp_name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $thumbnailPath = '../img/' . $thumbnailName;
-        move_uploaded_file($thumbnailTmpName, $thumbnailPath);
-        addPost($conn, $_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName);
-        
-        header('Location: ../success.php');
-        die();
+        if(move_uploaded_file($thumbnailTmpName, $thumbnailPath)){
+            if(!addPost($conn, $_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName)){
+                $_SESSION['formData'] = $_POST;
+                $_SESSION['error'][] = 'Add post to database failed';
+                header('Location: ../addPost.php');
+                die();
+            }
+            $_SESSION['success'][] = 'Your post has been successfuly added';
+            header('Location: ../index.php');
+            die();
+        }else{
+            $_SESSION['formData'] = $_POST;
+            $_SESSION['error'][] = 'Cannot move file to folder';
+            header('Location: ../success.php');
+            die();
+        }
     }
 } else {
     header('Location: ../addPost.php');

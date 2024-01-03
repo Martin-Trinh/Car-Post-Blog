@@ -3,11 +3,21 @@ session_start();
 require_once 'config/db_config.php';
 require_once 'controller/functions.php';
 
+
+if(!isset($_SESSION['user'])){
+    $_SESSION['error'][] = 'Please log in to edit post';
+    header('Location: login.php');
+    die();
+}
+
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $post = selectPostById($conn, $id);
+    if($post['user_id'] !== $_SESSION['user']['user_id']){
+        unset($post);
+    }
 }
-if ($post) {
+if (isset($post)) {
     $titleState = isset($_SESSION['errorMsg']['title-post']) ? 'error' : '';
     $bodyState = isset($_SESSION['errorMsg']['article-body']) ? 'error' : '';
     $thumbnailState = isset($_SESSION['errorMsg']['thumbnail']) ? 'error' : '';
@@ -38,16 +48,14 @@ if ($post) {
 <main class="container">
     <?php include 'partials/toTopBtn.php';
     include 'partials/themeBtn.php'; ?>
-    <script src="javascript/validationWritePost.js" defer></script>
-    <script src="javascript/validation.js" defer></script>
-    <?php if (!$post) : ?>
+    <?php if (!isset($post)) : ?>
         <div class="server-msg error">Cannot edit this post</div>
     <?php else : ?>
+        <script src="javascript/validationWritePost.js" defer></script>
+        <script src="javascript/validation.js" defer></script>
         <div class="container form-container add-post-container">
             <h2>Write an article</h2>
             <form action="./controller/editPostController.php" method="POST" id="form" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= $post['post_id'] ?>">
-                <input type="hidden" name="prev-thumbnail" value="<?= $post['thumbnail'] ?>">
                 <div class="form-field <?= $titleState ?>">
                     <label for="title-post">Title</label>
                     <input type="text" name="title-post" value="<?= $titleValue ?>" placeholder="Post title" id="title-post" autocomplete="off">
@@ -77,6 +85,11 @@ if ($post) {
                     <label for="thumbnail">Add Thumbnail</label>
                     <input type="file" name="thumbnail" id="thumbnail">
                     <small><?= $thumbnailErr ?></small>
+                </div>
+                <div>
+                    <input type="hidden" name="id" value="<?= $post['post_id'] ?>">
+                    <input type="hidden" name="prev-thumbnail" value="<?= $post['thumbnail'] ?>">
+                    <input type="hidden" name="user-id" value="<?= $post['user_id'] ?>">
                 </div>
                 <button type="submit" name="submit">Publish</button>
             </form>

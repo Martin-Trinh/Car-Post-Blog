@@ -1,5 +1,12 @@
 <?php 
+// phpinfo();
 session_start();
+if(!isset($_SESSION['success'])){
+    $_SESSION['success'] = array();
+}
+if(!isset($_SESSION['error'])){
+    $_SESSION['error'] = array();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +34,7 @@ session_start();
         <button class="write-btn"><a href="addPost.php">Write an article</a></button>
       </div>
     </header>
+    <?php include 'partials/notification.php' ?>
     <main class="container">
       <?php include 'partials/toTopBtn.php';
             include 'partials/themeBtn.php'; 

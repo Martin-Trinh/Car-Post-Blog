@@ -1,3 +1,4 @@
+
 <nav id="navbar">
     <h2 class="page-logo">
         <a href="index.php">Car Blog</a>
@@ -17,7 +18,8 @@
     </ul>
     <?php if(isset($_SESSION['user'])): ?>
         <div class="nav-profile">
-            <a class="profile-btn" href="../index.php"><?= $_SESSION['user']['username'] . " " . $_SESSION['user']['role']?></a>
+            <a class="profile-btn" href="../index.php"><?= $_SESSION['user']['username'] ?></a>
+            <small><?= $_SESSION['user']['role'] ?></small>
             <a class="logout-btn" href="../controller/logout.php">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     <?php else: ?>

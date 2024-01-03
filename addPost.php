@@ -1,6 +1,12 @@
 <?php
 session_start();
+require_once 'controller/functions.php';
 
+if(!isset($_SESSION['user'])){
+    $_SESSION['error'][] = 'Please log in to add post';
+    header('Location: login.php');
+    die();
+}
 $titleState = isset($_SESSION['errorMsg']['title-post']) ? 'error' : '';
 $bodyState = isset($_SESSION['errorMsg']['article-body']) ? 'error' : '';
 $thumbnailState = isset($_SESSION['errorMsg']['thumbnail']) ? 'error' : '';

@@ -103,18 +103,90 @@ article{
     background-color: var(--bg-alt);
     padding: 2rem;
     border-radius: 1rem;
-    /* transition: all 0.25s ease; */
 }
-/* article:hover{
-    box-shadow: 0 28px 40px -12px rgba(0,0,0,0.24);
-    transform: scale(1.05)
-} */
 .container{
     max-width: 100%;
     margin: 0 auto;
     padding: 3rem 1.5rem;
 }
-/* Utility btn */
+
+/* || Notification */
+
+.notifications{
+    position: fixed;
+    right: 0;
+    width: 25%;
+    margin-right:2rem;
+}
+.toast{
+    display: flex;
+    justify-content: space-around;
+    align-items: first baseline;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.toast p {
+    margin: 0 1rem;
+    width: 80%;
+}
+
+.toast.success{
+    background-color: #0abf3070;
+}
+.toast.error{
+    background-color:#f24d4c70;
+}
+.toast.success i {
+    color: var(--success-color);
+    font-size: 1.2rem;
+}
+.toast.error i {
+    font-size: 1.2rem;
+    color: var(--error-color);
+}
+.fa-xmark{
+    transition: all 0.25 ease-in;
+    cursor: pointer;
+}
+.toast.success .fa-xmark:hover,
+.toast.error .fa-xmark:hover{
+    color: var(--text-color);
+}
+
+/* || Pagination */
+
+.pagination{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.pagination ul{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-alt);
+    padding: 1rem 0rem;
+    border-radius: 1rem;
+}
+
+.pagination a{
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+}
+
+.pagination a.active{
+    background-color: var(--decor-color);
+    border-radius: 50%;
+}
+
+a.disabled{
+    color: #999;
+    pointer-events: none;
+}
+
+/* || Theme switch btn */
+
+
 .theme-switch{
     display: flex;
     justify-content: center;
@@ -161,6 +233,8 @@ article{
 #color-switch:checked ~ .color-switch::before{
     content: 'Light mode';
 }
+
+/* || to top btn */
 
 .to-top-btn{
     position: fixed;
@@ -282,7 +356,7 @@ nav {
 /* || Trending section styles */
 
 .trending-article, .latest-article{
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 .section-heading{
@@ -296,8 +370,6 @@ nav {
     display: flex;
     margin-top: 2rem;
     gap: 2rem;
-    padding-top:4rem
-    
 }
 .article-img{
     flex:1;
@@ -346,10 +418,11 @@ nav {
 
 /* || Latest article */
 
+
 .latest-list{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    gap: 1rem;
 }
 .latest-article .article{
     font-size: 0.8rem;
@@ -411,7 +484,7 @@ footer h2{
 }
 
 .single-article{
-    width: 70%;
+    width: 75%;
     padding:2rem 3rem 3rem;
 
 }
@@ -540,7 +613,7 @@ form small{
 }
 
 .server-msg{
-    margin-bottom: 1.5rem ;
+    margin: 0rem 1.5rem;
     text-align: center;
     padding: 0.5rem 0;
     color: var(--text-color);
