@@ -1,6 +1,6 @@
 <?php
 require_once ('../config/db_config.php');
-require_once('../controller/functions.php');
+require_once('../model/PostRepository.php');
 require_once('../services/Pagination.php');
 
 if(!isset($_GET['page'])){
@@ -13,7 +13,10 @@ if(!isset($_GET['page'])){
 
 $pageNum = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
 $postPerPage = 6;
-$totalPosts = countAllPosts($conn);
+
+$postRepo = new PostRepository($conn);
+
+$totalPosts = $postRepo->countAllPosts();
 $pagination = new Pagination($postPerPage, $totalPosts);
 
 if(!is_int($pageNum) || $pageNum > $pagination->getTotalPage()){
@@ -39,7 +42,7 @@ for($i = 0; $i < count($pageLinks); $i++){
 }
 $paginationHtml .= $nextLink . '</ul>';
 
-$data = selectPostsPagination($conn, $postPerPage, ($pageNum - 1) * $postPerPage);
+$data = $postRepo->selectPostsPagination($postPerPage, ($pageNum - 1) * $postPerPage);
 $postsHtml = '';
 
 foreach($data as $post){

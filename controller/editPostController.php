@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../config/db_config.php';
-require_once 'functions.php';
+require_once('../model/PostRepository.php');
 
 
 if (isset($_POST['submit'])) {
@@ -70,7 +70,8 @@ if (isset($_POST['submit'])) {
         die();
     }else{
         // update post in db
-        if(!updatePostById($conn, $id, $title, $category, $body, $thumbnailName ?? $prev_thumbnail)){
+        $postRepo = new PostRepository($conn);
+        if(!$postRepo->updatePostById($id, $title, $category, $body, $thumbnailName ?? $prev_thumbnail)){
             $_SESSION['error'][] = 'Update post failed';
             header('Location: ' . '../editPost.php?id='. $id);
             die();

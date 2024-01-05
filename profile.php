@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('config/db_config.php');
-require_once('controller/functions.php');
+require_once('model/PostRepository.php');
 require_once('services/Pagination.php');
 
 
@@ -13,10 +13,15 @@ if (isset($_GET['username'])) {
     $page = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
   $postPerPage = 5;
 
+
+  $userRepo = new UserRepository($conn);
   $username = filter_var($_GET['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-  $user = findUserByUsername($conn, $username);
-  $totalPost = countPostFromUser($conn, $user['user_id']);
-  $allPosts = selectPostsFromUser($conn, $user['user_id'], $postPerPage, ($page - 1) * $postPerPage);
+  $user = $userRepo->findUserByUsername($username);
+  
+  $postRepo = new PostRepository($conn);
+  $totalPost = $postRepo->countPostFromUser($user['user_id']);
+  $allPosts = $postRepo->selectPostsFromUser($user['user_id'], $postPerPage, ($page - 1) * $postPerPage);
+
   $pagination = new Pagination($postPerPage, $totalPost);
   $pageLinks = $pagination->getPageLinks($page);
 }

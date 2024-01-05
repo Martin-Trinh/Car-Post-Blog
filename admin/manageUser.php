@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('config/db_config.php');
-require_once('controller/functions.php');
+require_once('model/UserRepository.php');
 require_once('services/Pagination.php');
 
 
@@ -15,12 +15,13 @@ if (!isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'admin') {
     $page = 1;
   else
     $page = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
-  $postPerPage = 5;
 
-  $totalUser = countUsers($conn);
-  $allUsers = selectAllUser($conn, $user['user_id'], $postPerPage, ($page - 1) * $postPerPage);
-  $pagination = new Pagination($postPerPage, $totalUser);
-  $pageLinks = $pagination->getPageLinks($page);
+$postPerPage = 5;
+$userRepository = new UserRepository($conn);
+$totalUser = $userRepository->countUsers();
+$allUsers = $userRepository->selectAllUser($user['user_id'], $postPerPage, ($page - 1) * $postPerPage);
+$pagination = new Pagination($postPerPage, $totalUser);
+$pageLinks = $pagination->getPageLinks($page);
 ?>
 <?php
 include 'partials/header.php';
@@ -59,7 +60,7 @@ include 'partials/notification.php'
             </section>
             <aside class="manage-user-button">
                 <div>
-                    
+
                 </div>
             </aside>
           </article>

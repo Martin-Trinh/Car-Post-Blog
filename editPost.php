@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'config/db_config.php';
-require_once 'controller/functions.php';
+require_once('model/PostRepository.php');
 
 
 if(!isset($_SESSION['user'])){
@@ -12,7 +12,9 @@ if(!isset($_SESSION['user'])){
 
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-    $post = selectPostById($conn, $id);
+    $postRepo = new PostRepository($conn);
+
+    $post = $postRepo->selectPostById($id);
     if($post['user_id'] !== $_SESSION['user']['user_id']){
         unset($post);
     }

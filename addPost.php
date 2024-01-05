@@ -1,7 +1,5 @@
 <?php
 session_start();
-require_once 'controller/functions.php';
-
 if(!isset($_SESSION['user'])){
     $_SESSION['error'][] = 'Please log in to add post';
     header('Location: login.php');

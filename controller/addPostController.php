@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../config/db_config.php';
-require_once 'functions.php';
+require_once('../model/PostRepository.php');
 
 if (isset($_POST['submit'])) {
     $title = filter_var($_POST['title-post'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -44,7 +44,8 @@ if (isset($_POST['submit'])) {
         $thumbnailTmpName = filter_var($thumbnail['tmp_name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $thumbnailPath = '../img/' . $thumbnailName;
         if(move_uploaded_file($thumbnailTmpName, $thumbnailPath)){
-            if(!addPost($conn, $_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName)){
+            $postRepo = new PostRepository($conn);
+            if(!$postRepo->addPost($_SESSION['user']['user_id'], $title, $body, $category, $thumbnailName)){
                 $_SESSION['formData'] = $_POST;
                 $_SESSION['error'][] = 'Add post to database failed';
                 header('Location: ../addPost.php');

@@ -1,19 +1,22 @@
 <?php 
 session_start();
 require_once '../config/db_config.php';
-require_once 'functions.php';
-
+require_once('../model/UserRepository.php');
+require_once('../model/Validation.php');
 
 if(isset($_POST['submit'])){
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     // validation
     $errorMsg;
-    if($username !== '' && $password !== ''){
+    $validation = new Validation();
+    if($validation->usernameValidate($username) &&
+        $validation->passwordValidate($password))
+    {
         // find user in database
-        $user = findUserByUsername($conn, $username);
-        if($user === false){
-            $_SESSION['error'] = 'Cannot find user';
+        $userRepo = new UserRepository($conn);
+        if(!$userRepo->findUserByUsername($username)){
+            $errorMsg['username'] = 'Username does not exist';
         }else{
             if(password_verify($password, $user['PASSWORD'])){
                 $_SESSION['success'][] = 'Log in successfuly';
@@ -26,14 +29,9 @@ if(isset($_POST['submit'])){
             }
         }
     }else{
-        if(!$username){
-            $errorMsg['username'] = 'Please enter username';
-        }
-        if(!$password){
-            $errorMsg['password'] = 'Please enter password';
-        }
+        $errorMsg = $validation->getErrorMsg();
     }
-    if(isset($errorMsg)){
+    if(isset($errorMsg) && $errorMsg){
         $_SESSION['formData'] = $_POST;
         $_SESSION['errorMsg'] = $errorMsg;
         header('Location: '. '../login.php');

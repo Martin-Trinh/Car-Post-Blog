@@ -1,8 +1,9 @@
 <?php 
   require_once ('config/db_config.php');
-  require_once('controller/functions.php');
+  require_once('../model/PostRepository.php');
   // get array of posts from database
-  $allPosts = selectTrendingPosts($conn, 3);
+  $postRepo = new PostRepository($conn);
+  $allPosts = $postRepo->selectTrendingPosts(3);
 ?>
 <section class="trending-article">
   <h2 class="section-heading">Trending articles</h2>

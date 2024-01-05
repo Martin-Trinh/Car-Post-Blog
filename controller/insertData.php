@@ -1,17 +1,17 @@
 <?php
 require_once '../config/db_config.php';
-require_once 'functions.php';
+require_once ('../model/PostRepository.php');
 
 $body = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium reprehenderit eius maxime praesentium amet tenetur quis, at, accusamus ipsum perspiciatis animi totam dignissimos quidem quos hic velit iste ab! Repudiandae saepe debitis molestias eveniet dolorum odit aliquam, iusto repellat beatae aspernatur sapiente fugiat eaque quidem? Esse minus id non soluta eveniet magnam vitae nobis assumenda officia fuga, ad, totam quod dolor et aspernatur, commodi reiciendis molestiae possimus? Numquam dicta cum iusto optio reprehenderit reiciendis at officia labore magnam minus? Nostrum libero cum harum earum, qui unde repudiandae exercitationem accusantium eaque sapiente vero omnis quia similique corrupti odio? Voluptas quisquam eius commodi consequuntur incidunt voluptatum itaque libero hic temporibus vero rem cupiditate voluptate porro praesentium quis alias, tempora obcaecati. Optio quia magni molestiae ut impedit explicabo laborum nulla, voluptate maxime iure inventore. Harum temporibus cumque delectus, beatae itaque corporis explicabo natus, consectetur nesciunt facilis perferendis. Odit autem minus nostrum consequuntur quisquam eveniet voluptatem et deserunt qui enim quo saepe dicta esse dolorem voluptatum illum id, doloribus rerum ratione tempora perspiciatis neque! Dolorem possimus esse minus sit perferendis temporibus distinctio nemo quisquam nesciunt facere, officia, assumenda rerum tempora vero inventore iusto ab architecto. Fuga minima velit deleniti nisi quasi nihil cumque sit?  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque doloremque cupiditate quisquam libero consectetur. Adipisci quidem aliquam eligendi maiores culpa corporis velit qui reprehenderit perspiciatis quis exercitationem repellat quisquam rerum alias consectetur non, optio ut! Distinctio ad nulla architecto, facere saepe, quia tempore quo voluptate voluptatibus enim id dignissimos consectetur rerum ea sit adipisci eum perspiciatis vero corporis officia minus natus quidem rem laudantium. Consequuntur soluta qui tempore officiis, voluptate harum ratione, provident cum, illo sequi nostrum quia architecto commodi rem omnis consequatur eveniet perspiciatis adipisci voluptatibus corporis aperiam in obcaecati deleniti corrupti? Id accusantium earum perspiciatis minus corrupti quisquam?';
-
+$postRepo = new PostRepository($conn);
 for($i = 1; $i < 4; $i++){
-    addPost($conn, 3, 'Google Fixes Nearly 100 Android Security Issues', $body, 'News', $i. '1.jpg');
-    addPost($conn, 3, 'The Year the Millennial Internet Died', $body, 'Technology', $i. '2.jpg');
-    addPost($conn, 3, '25 Gift Ideas for People Who Work From Home', $body, 'Technology', $i .'3.jpg');
-    addPost($conn, 3, 'Blood, Guns, and Broken Scooters: Inside the Chaotic Rise and Fall of Bird', $body, 'News',$i . '4.jpg');
-    addPost($conn, 3, 'Microsoft’s AI Chatbot Replies to Election Questions With Conspiracies, Fake Scandals, and Lies', $body, 'Interesting facts', $i . '5.jpg');
-    addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'Interesting facts', $i.'6.jpg');
-    addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'Reviews', $i.'7.jpg');
-    addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'Reviews', $i.'8.jpg');
-    addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'News', $i . '9.jpg');
+    $postRepo->addPost($conn, 3, 'Google Fixes Nearly 100 Android Security Issues', $body, 'News', $i. '1.jpg');
+    $postRepo->addPost($conn, 3, 'The Year the Millennial Internet Died', $body, 'Technology', $i. '2.jpg');
+    $postRepo->addPost($conn, 3, '25 Gift Ideas for People Who Work From Home', $body, 'Technology', $i .'3.jpg');
+    $postRepo->addPost($conn, 3, 'Blood, Guns, and Broken Scooters: Inside the Chaotic Rise and Fall of Bird', $body, 'News',$i . '4.jpg');
+    $postRepo->addPost($conn, 3, 'Microsoft’s AI Chatbot Replies to Election Questions With Conspiracies, Fake Scandals, and Lies', $body, 'Interesting facts', $i . '5.jpg');
+    $postRepo->addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'Interesting facts', $i.'6.jpg');
+    $postRepo->addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'Reviews', $i.'7.jpg');
+    $postRepo->addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'Reviews', $i.'8.jpg');
+    $postRepo->addPost($conn, 3, 'You Know It’s a Placebo. So Why Does It Still Work?', $body, 'News', $i . '9.jpg');
 }

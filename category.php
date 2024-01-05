@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('config/db_config.php');
-require_once('controller/functions.php');
+require_once('model/PostRepository.php');
 require_once('services/Pagination.php');
 
 if (isset($_GET['category'])) {
@@ -9,10 +9,14 @@ if (isset($_GET['category'])) {
     $page = 1;
   else
     $page = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
+  
   $category = filter_var($_GET['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
   $postPerPage = 5;
-  $allPosts = selectPostsByCategory($conn, $category, $postPerPage, ($page - 1) * $postPerPage);
-  $totalPost = countPostsByCategory($conn, $category);
+
+  $postRepo = new PostRepository($conn);
+  $allPosts = $postRepo->selectPostsByCategory($category, $postPerPage, ($page - 1) * $postPerPage);
+  $totalPost = $postRepo->countPostsByCategory($category);
+
   $pagination = new Pagination($postPerPage, $totalPost);
   $pageLinks = $pagination->getPageLinks($page);
 }

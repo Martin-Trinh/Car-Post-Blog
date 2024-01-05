@@ -1,40 +1,40 @@
 <?php
 session_start();
 require_once '../config/db_config.php';
-require_once 'functions.php';
+require_once '../model/Validation.php';
+require_once '../model/UserRepository.php';
+
 
 if(isset($_POST['submit'])){
+    // sanitize data
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $confirmPassword = filter_var($_POST['confirm-password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    // validation
     $errorMsg;
-    if(!$username){
-        $errorMsg['username'] = 'Please enter username';
+    // validation
+    $validator = new Validation();
+    $validator->usernameValidate($username);
+    if($validator->passwordValidate($password) && 
+        $validator->confirmPasswordValidate($confirmPassword))
+    {
+        $validator->twoPasswordValidate($password, $confirmPassword);
     }
-    if(!$password){
-        $errorMsg['password'] = 'Please enter password';
-    }
-    if(!$confirmPassword){
-        $errorMsg['confirmPass'] = 'Please enter confirm password';
-        
-    }
-    if($confirmPassword !== $password){
-        $errorMsg['password'] = "Password does not match";
-        $errorMsg['confirmPass'] = "Password does not match";
-    }
-    if(findUserByUsername($conn, $username)){
+    $errorMsg = $validator->getErrorMsg();
+    $userRepo = new UserRepository($this->conn);
+    if($userRepo->findUserByUsername($username)){
         $errorMsg['username'] = 'Username already taken';
+        return false;
     }
 
-    if(isset($errorMsg)){
+    if(isset($errorMsg) && $errorMsg){
         $_SESSION['formData'] = $_POST;
-        $_SESSION['errorMsg'] = $errorMsg;
+        $_SESSION['errorMsg'] = $validator->$errorMsg;
         header('Location: '. '../sign-up.php');
         die();
     }else{
         // createUser
-        if(createUser($conn, $username, $password, 'admin')){
+        $userRepo = new UserRepository($conn);
+        if($userRepo->createUser($username, $password, 'admin')){
             $_SESSION['success'][] = 'Signed up successfully';
             header('Location: '. '../login.php');
             die();
