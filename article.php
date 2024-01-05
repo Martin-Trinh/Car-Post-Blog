@@ -7,13 +7,12 @@ if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $post = selectPostById($conn, $id);
 }
-
 ?>
 <?php include 'partials/header.php' ?>
 <main class="container">
     <?php include 'partials/toTopBtn.php';
     include 'partials/themeBtn.php'; ?>
-    <?php if (isset($post)) : ?>
+    <?php if (isset($post) && $post) : ?>
         <article class="container single-article">
             <?php if (isset($_SESSION['user'])) : ?>
                 <button><a href="editPost.php?id=<?= $id ?>">Edit</a></button>

@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
         }else{
             $_SESSION['formData'] = $_POST;
             $_SESSION['error'][] = 'Cannot move file to folder';
-            header('Location: ../success.php');
+            header('Location: ../addPost.php');
             die();
         }
     }

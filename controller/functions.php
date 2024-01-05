@@ -165,6 +165,23 @@ function selectPostsPagination($conn, $limit, $offset){
     return $data;
 }
 
+function countPostsByCategory($conn, $category){
+    $sql = "SELECT COUNT(*) as count FROM posts 
+    WHERE posts.category = ?";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        mysqli_stmt_close($stmt);
+        return null;
+    }
+    mysqli_stmt_bind_param($stmt, 's', $category);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $data = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+    return $data['count'];
+}
+
 function selectPostsByCategory($conn, $category, $limit, $offset){
     $sql = "SELECT posts.post_id ,posts.title, posts.body, posts.category, posts.publish_datetime, posts.likes, posts.thumbnail, users.username 
     FROM posts JOIN users ON posts.user_id = users.user_id 
@@ -202,6 +219,58 @@ function selectPostsFromUser($conn, $id, $limit, $offset){
         return null;
     }
     mysqli_stmt_bind_param($stmt, 'iii', $id, $limit, $offset);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    while($row = mysqli_fetch_assoc($result)){
+        $data[] = $row;
+    }
+    mysqli_stmt_close($stmt);
+    return $data;
+}
+
+function countPostFromUser($conn, $id){
+    $sql = "SELECT COUNT(*) as count FROM posts 
+    WHERE posts.user_id = ?";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        mysqli_stmt_close($stmt);
+        return null;
+    }
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $data = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+    return $data['count'];
+}
+function countUsers($conn){
+    $sql = "SELECT COUNT(*) as count FROM users"; 
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        mysqli_stmt_close($stmt);
+        return null;
+    }
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $data = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+    return $data['count'];
+}
+function selectAllUser($conn, $limit, $offset){
+    $sql = "SELECT * FROM users 
+    ORDER BY users.username ASC
+    LIMIT ? 
+    OFFSET ?";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        mysqli_stmt_close($stmt);
+        return null;
+    }
+    mysqli_stmt_bind_param($stmt, 'ii', $limit, $offset);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while($row = mysqli_fetch_assoc($result)){

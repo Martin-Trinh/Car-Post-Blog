@@ -2,20 +2,29 @@
 session_start();
 require_once('config/db_config.php');
 require_once('controller/functions.php');
-include 'partials/header.php';
+require_once('services/Pagination.php');
+
+if (isset($_GET['category'])) {
+  if(!isset($_GET['page']))
+    $page = 1;
+  else
+    $page = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
+  $category = filter_var($_GET['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  $postPerPage = 5;
+  $allPosts = selectPostsByCategory($conn, $category, $postPerPage, ($page - 1) * $postPerPage);
+  $totalPost = countPostsByCategory($conn, $category);
+  $pagination = new Pagination($postPerPage, $totalPost);
+  $pageLinks = $pagination->getPageLinks($page);
+}
 ?>
-<?php include 'partials/notification.php' ?>
+<?php
+include 'partials/header.php';
+include 'partials/notification.php'
+?>
 <main class="container">
   <?php
   include 'partials/toTopBtn.php';
   include 'partials/themeBtn.php';
-  ?>
-  <?php
-  // get array of posts from database
-  if (isset($_GET['category'])) {
-    $category = filter_var($_GET['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $allPosts = selectPostsByCategory($conn, $category, 5, 0);
-  }
   ?>
   <section class="trending-article">
     <?php if (!isset($allPosts) || count($allPosts) === 0) : ?>
@@ -40,7 +49,7 @@ include 'partials/header.php';
               </p>
               <div class="article-data">
                 <div class="author">
-                  <p><a class="article-author" href=""><?= $allPosts[$i]['username'] ?></a></p>
+                  <p><a class="article-author" href="profile.php?username=<?= $allPosts[$i]['username'] ?>"><?= $allPosts[$i]['username'] ?></a></p>
                   <p class="article-date"><?= $allPosts[$i]['publish_datetime'] ?></p>
                 </div>
                 <div class="likes">
@@ -50,6 +59,30 @@ include 'partials/header.php';
             </div>
           </article>
         <?php endfor ?>
+      </div>
+      <div class="pagination">
+        <ul>
+          <?php if($page === 1) : ?>
+            <li><a href="" class="disabled">Prev</a></li>
+          <?php else: ?>
+            <li><a href="?category=<?=$category?>&page=<?= $page - 1?>">Prev</a></li>
+          <?php endif ?>
+          <?php for($i = 0; $i < count($pageLinks); $i++): ?>
+              <?php if($pageLinks[$i]['data'] === $page) : ?>
+                <li><a href="?category=<?=$category?>&page=<?= $page ?>" class="active"><?=$pageLinks[$i]['data']?></a></li>
+              <?php else : ?>
+                <li><a href="?category=<?=$category?>&page=<?= $pageLinks[$i]['data'] ?>"><?=$pageLinks[$i]['data']?></a></li>
+              <?php endif ?>
+              <?php if($i < count($pageLinks) - 1 && $pageLinks[$i]['data'] + 1 !== $pageLinks[$i+1]['data']) : ?>
+                  <li>...</li>
+              <?php endif ?>
+            <?php endfor ?>
+          <?php if($page === $pagination->getTotalPage()) : ?>
+            <li><a href="" class="disabled">Next</a></li>
+          <?php else: ?>
+            <li><a href="?category=<?=$category?>&page=<?= $page + 1?>">Next</a></li>
+          <?php endif ?>
+        </ul>
       </div>
     <?php endif ?>
   </section>
