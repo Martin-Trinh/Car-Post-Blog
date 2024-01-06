@@ -15,7 +15,8 @@ if(isset($_POST['submit'])){
     {
         // find user in database
         $userRepo = new UserRepository($conn);
-        if(!$userRepo->findUserByUsername($username)){
+        $user = $userRepo->findUserByUsername($username);
+        if(!$user){
             $errorMsg['username'] = 'Username does not exist';
         }else{
             if(password_verify($password, $user['PASSWORD'])){

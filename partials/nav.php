@@ -13,14 +13,15 @@
                 <li><a href="../category.php?category=Technology">Technology</a></li>
             </ul>
         </li>
-        <li><a href="">Images</a></li>
         <li><a href="about-us.php">About us</a></li>
         <li><a href="faq.php">FAQ</a></li>
     </ul>
     <?php if(isset($_SESSION['user'])): ?>
         <div class="nav-profile">
-            <a class="profile-btn" href="../profile.php?username=<?= $_SESSION['user']['username']?>"><?= $_SESSION['user']['username'] ?></a>
-            <small><?= $_SESSION['user']['role'] ?></small>
+            <div class="user-info-nav">
+                <a class="profile-btn" href="../profile.php?username=<?= $_SESSION['user']['username']?>"><?= $_SESSION['user']['username'] ?></a>
+                <small><?= $_SESSION['user']['role'] ?></small>
+            </div>
             <a class="logout-btn" href="../controller/logout.php">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     <?php else: ?>

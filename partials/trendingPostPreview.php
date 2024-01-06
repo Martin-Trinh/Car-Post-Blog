@@ -1,6 +1,6 @@
 <?php 
   require_once ('config/db_config.php');
-  require_once('../model/PostRepository.php');
+  require_once('model/PostRepository.php');
   // get array of posts from database
   $postRepo = new PostRepository($conn);
   $allPosts = $postRepo->selectTrendingPosts(3);

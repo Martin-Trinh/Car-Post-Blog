@@ -20,10 +20,10 @@
         </ul>
       </div>
       <div class="contact-admin-footer">
-        <h2>Admin Contact</h2>
+        <h2>Follow us</h2>
         <div class="footer-contact">
-          <a href="" target="_blank"><i  class="fa-brands fa-facebook"></i></a>
-          <a href="" target="_blank"><i  class="fa-brands fa-instagram"></i></a>
+          <a href="" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a href="" target="_blank"><i class="fa-brands fa-instagram"></i></a>
           <a href="" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
         </div>
       </div>

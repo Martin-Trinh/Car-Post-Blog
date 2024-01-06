@@ -2,6 +2,7 @@
 session_start();
 require_once('config/db_config.php');
 require_once('model/PostRepository.php');
+require_once('model/UserRepository.php');
 require_once('services/Pagination.php');
 
 
@@ -42,7 +43,7 @@ include 'partials/notification.php'
       <h2 class="section-heading"><?= $username ?></h2>
       <div class="manage-links">
         <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
-          <a href="admin/manageUser.php">Users</a>
+          <a class="logout-btn" href="admin/manageUser.php">Manage users</a>
         <?php endif ?>
       </div>
       <div class="trending-list">

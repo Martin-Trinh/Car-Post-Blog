@@ -46,7 +46,6 @@ class UserRepository{
             mysqli_stmt_close($stmt);
             return null;
         }
-        mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $data = mysqli_fetch_assoc($result);
@@ -74,5 +73,21 @@ class UserRepository{
         mysqli_stmt_close($stmt);
         return $data;
     }
+
+    public function updateRoleByUsername($username, $role){
+        $sql = "UPDATE users SET users.role = ?
+        WHERE users.username = ?";
+    
+        $stmt = mysqli_stmt_init($this->conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+        mysqli_stmt_bind_param($stmt, 'ss', $role, $username);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return true;
+    }
+
 
 }
