@@ -10,6 +10,9 @@ if(isset($_POST['submit'])){
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $confirmPassword = filter_var($_POST['confirm-password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_POST['username'] = $username;
+    $_POST['password'] = $password;
+    $_POST['confirm-password'] = $confirmPassword;
     $errorMsg;
     // validation
     $validator = new Validation();
@@ -20,7 +23,7 @@ if(isset($_POST['submit'])){
         $validator->twoPasswordValidate($password, $confirmPassword);
     }
     $errorMsg = $validator->getErrorMsg();
-    $userRepo = new UserRepository($this->conn);
+    $userRepo = new UserRepository($conn);
     if($userRepo->findUserByUsername($username)){
         $errorMsg['username'] = 'Username already taken';
         return false;
@@ -34,7 +37,7 @@ if(isset($_POST['submit'])){
     }else{
         // createUser
         $userRepo = new UserRepository($conn);
-        if($userRepo->createUser($username, $password, 'admin')){
+        if($userRepo->createUser($username, $password, 'user')){
             $_SESSION['success'][] = 'Signed up successfully';
             header('Location: '. '../login.php');
             die();

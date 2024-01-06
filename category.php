@@ -3,6 +3,8 @@ session_start();
 require_once('config/db_config.php');
 require_once('model/PostRepository.php');
 require_once('services/Pagination.php');
+require_once('services/convertDate.php');
+
 
 if (isset($_GET['category'])) {
   if(!isset($_GET['page']))
@@ -54,7 +56,7 @@ include 'partials/notification.php'
               <div class="article-data">
                 <div class="author">
                   <p><a class="article-author" href="profile.php?username=<?= $allPosts[$i]['username'] ?>"><?= $allPosts[$i]['username'] ?></a></p>
-                  <p class="article-date"><?= $allPosts[$i]['publish_datetime'] ?></p>
+                  <p class="article-date"><?= convertDate($allPosts[$i]['publish_datetime']) ?></p>
                 </div>
                 <div class="likes">
                   <p><?= $allPosts[$i]['likes'] ?> Likes</p>

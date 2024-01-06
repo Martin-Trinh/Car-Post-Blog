@@ -34,6 +34,7 @@ class PostRepository{
         mysqli_stmt_bind_param($stmt, 'i', $limit);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
+        $data = array();
         while($row = mysqli_fetch_assoc($result)){
             $data[] = $row;
         }
@@ -116,6 +117,7 @@ class PostRepository{
         mysqli_stmt_bind_param($stmt, 'ii', $limit, $offset);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
+        $data = array();
         while($row = mysqli_fetch_assoc($result)){
             $data[] = $row;
         }
@@ -156,6 +158,7 @@ class PostRepository{
         mysqli_stmt_bind_param($stmt, 'sii', $category, $limit, $offset);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
+        $data = array();
         while($row = mysqli_fetch_assoc($result)){
             $data[] = $row;
         }
@@ -179,6 +182,7 @@ class PostRepository{
         mysqli_stmt_bind_param($stmt, 'iii', $id, $limit, $offset);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
+        $data = array();
         while($row = mysqli_fetch_assoc($result)){
             $data[] = $row;
         }
@@ -203,6 +207,54 @@ class PostRepository{
         return $data['count'];
     }
 
+    public function incrementLike($id){
+        $sql = "UPDATE posts SET likes = likes + 1
+        WHERE posts.post_id = ?";
+        $stmt = mysqli_stmt_init($this->conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            mysqli_stmt_close($stmt);
+            return null;
+        }
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return true;
+    }
+
+    public function getLike($id){
+        $sql = "SELECT posts.likes FROM posts
+        WHERE posts.post_id = ?";
+        $stmt = mysqli_stmt_init($this->conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            mysqli_stmt_close($stmt);
+            return null;
+        }
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($stmt);
+        return $data['likes'];
+    }
     
+    public function getLikeFromUser($id){
+        $sql = "SELECT SUM(posts.likes) as likes FROM posts 
+        WHERE posts.user_id = ?";
     
+        $stmt = mysqli_stmt_init($this->conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            mysqli_stmt_close($stmt);
+            return null;
+        }
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($stmt);
+        if ($data['likes'])
+            return $data['likes'];
+        else
+            return 0;
+    }   
+
 }

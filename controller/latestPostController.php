@@ -2,6 +2,7 @@
 require_once ('../config/db_config.php');
 require_once('../model/PostRepository.php');
 require_once('../services/Pagination.php');
+require_once('../services/convertDate.php');
 
 if(!isset($_GET['page'])){
   echo json_encode( array(
@@ -64,7 +65,7 @@ foreach($data as $post){
           <div class="article-data">
             <div class="author">
               <p><a class="article-author" href="../profile.php?username=' . $post['username'] . '">'. $post['username'] . '</a></p>
-              <p class="article-date">' . $post['publish_datetime'] . '</p>
+              <p class="article-date">' . convertDate($post['publish_datetime']) . '</p>
             </div>
             <div class="likes">
               <p>'. $post['likes'] .' Likes</p>

@@ -69,10 +69,10 @@ if (isset($post)) {
                     <label for="category">Choose category</label>
                     <select name="category" id="category">
                         <option <?= $categoryValue === '' ? 'selected' : '' ?> value="">--Please select an option--</option>
-                        <option <?= $categoryValue === 'tech' ? 'selected' : '' ?> value="tech">Technology</option>
-                        <option <?= $categoryValue === 'news' ? 'selected' : '' ?> value="news">News</option>
-                        <option <?= $categoryValue === 'review' ? 'selected' : '' ?> value="review">Reviews</option>
-                        <option <?= $categoryValue === 'facts' ? 'selected' : '' ?> value="facts">Interesting facts</option>
+                        <option <?= $categoryValue === 'Technology' ? 'selected' : '' ?> value="tech">Technology</option>
+                        <option <?= $categoryValue === 'News' ? 'selected' : '' ?> value="news">News</option>
+                        <option <?= $categoryValue === 'Review' ? 'selected' : '' ?> value="review">Reviews</option>
+                        <option <?= $categoryValue === 'Interesting facts' ? 'selected' : '' ?> value="facts">Interesting facts</option>
                     </select>
                     <small><?= $categoryErr ?></small>
                 </div>

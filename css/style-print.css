@@ -1,0 +1,27 @@
+/* style for printing */
+@media print{
+    body, a, button{
+        color: black;
+        font-size: 12pt;        
+    }
+    main,
+    .trending-section,
+    .single-article,
+    .container,
+    article,
+    .article{
+        width: 100%;
+    }
+
+    
+    .article-data,
+    .likes,
+    .pagination,
+    .theme-switch,
+    footer,
+    header,
+    nav,
+    button{
+        display: none;
+    }
+}

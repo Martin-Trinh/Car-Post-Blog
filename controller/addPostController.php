@@ -7,6 +7,9 @@ if (isset($_POST['submit'])) {
     $title = filter_var($_POST['title-post'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $body = filter_var($_POST['article-body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category = filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_POST['title-post'] = $title;
+    $_POST['article-body'] = $body;
+    $_POST['category'] = $category;
     $thumbnail = $_FILES['thumbnail'];
     // validation   
     $errorMsg;

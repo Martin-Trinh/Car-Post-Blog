@@ -2,6 +2,7 @@
 session_start();
 require_once('config/db_config.php');
 require_once('model/PostRepository.php');
+require_once('services/convertDate.php');
 
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
@@ -14,21 +15,23 @@ if (isset($_GET['id'])) {
 <main class="container">
     <?php include 'partials/toTopBtn.php';
     include 'partials/themeBtn.php'; ?>
+    <script src="javascript/likePost.js" defer></script>
     <?php if (isset($post) && $post) : ?>
         <article class="container single-article">
-            <?php if (isset($_SESSION['user'])) : ?>
+            <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_id'] === $post['user_id']) : ?>
                 <button><a href="editPost.php?id=<?= $id ?>">Edit</a></button>
                 <button><a href="controller/deletePostController.php?id=<?= $id ?>">Delete</a></button>
             <?php endif ?>
             <div class="article-info single-article-info">
                 <h2 class="single-article-heading"><?= $post['title'] ?></h2>
-                <a class="category-btn" href="category.php?category=<?= $allPosts[$i]['category'] ?>"><?= $post['category'] ?></a>
+                <a class="category-btn" href="category.php?category=<?= $post['category'] ?>"><?= $post['category'] ?></a>
                 <div class="article-data">
                     <div class="author">
                         <p><a class="article-author" href="profile.php?username=<?= $post['username']?>"><?= $post['username'] ?></a></p>
-                        <p class="article-date"><?= $post['publish_datetime'] ?></p>
+                        <p class="article-date"><?= convertDate($post['publish_datetime']) ?></p>
                     </div>
-                    <div class="likes">
+                    <div class="likes" >
+                        <button id="likePost" post-id="<?= $id ?>"><i class="fa-solid fa-thumbs-up"></i></button>
                         <p><?= $post['likes'] ?> Likes</p>
                     </div>
                 </div>

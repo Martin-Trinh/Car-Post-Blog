@@ -4,8 +4,7 @@ require_once('config/db_config.php');
 require_once('model/PostRepository.php');
 require_once('model/UserRepository.php');
 require_once('services/Pagination.php');
-
-
+require_once('services/convertDate.php');
 
 if (isset($_GET['username'])) {
   if(!isset($_GET['page']))
@@ -37,13 +36,31 @@ include 'partials/notification.php'
   include 'partials/themeBtn.php';
   ?>
   <section class="trending-article">
+    <h2 class="section-heading">User profile</h2>
+    <article class="article user-manage">
+            <div class="user-info">
+              <p>Username: <a href="profile.php?username=<?= $user['username']?>"><?= $user['username'] ?></a></p>
+              <div class="user-role-update">
+                <p>Role: <?= $user['role']?></p>
+              </div>
+            </div>
+              <div class="user-analytic">
+                <div class="total">
+                  <p>Total posts: </p>
+                  <p><?= $postRepo->countPostFromUser($user['user_id']) ?></p>
+                </div>
+                <div class="total">
+                  <p>Total likes: </p>
+                  <p><?= $postRepo->getLikeFromUser($user['user_id']) ?></p>
+                </div>
+              </div>
+      </article>
     <?php if (!isset($allPosts) || count($allPosts) === 0) : ?>
-      <div class="server-msg error">Cannot find this profile</div>
+      <div class="server-msg error">Cannot find any post from this user</div>
     <?php else : ?>
-      <h2 class="section-heading"><?= $username ?></h2>
       <div class="manage-links">
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
-          <a class="logout-btn" href="admin/manageUser.php">Manage users</a>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin' && $_SESSION['user']['user_id'] === $user['user_id']): ?>
+          <a class="logout-btn" href="manageUser.php">Manage users</a>
         <?php endif ?>
       </div>
       <div class="trending-list">
@@ -65,7 +82,7 @@ include 'partials/notification.php'
               <div class="article-data">
                 <div class="author">
                   <p><a class="article-author" href="profile.php?username=<?= $allPosts[$i]['username']?>"><?= $allPosts[$i]['username'] ?></a></p>
-                  <p class="article-date"><?= $allPosts[$i]['publish_datetime'] ?></p>
+                  <p class="article-date"><?= convertDate($allPosts[$i]['publish_datetime']) ?></p>
                 </div>
                 <div class="likes">
                   <p><?= $allPosts[$i]['likes'] ?> Likes</p>

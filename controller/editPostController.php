@@ -12,7 +12,9 @@ if (isset($_POST['submit'])) {
     $category = filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $thumbnail = $_FILES['thumbnail'];
     $userId = filter_var($_POST['user-id'], FILTER_SANITIZE_NUMBER_INT);
-
+    $_POST['title-post'] = $title;
+    $_POST['article-body'] = $body;
+    $_POST['category'] = $category;
     // check if post belong to the user
     if($userId != $_SESSION['user']['user_id']){
         $_SESSION['error'][] = 'Cannot edit this post';

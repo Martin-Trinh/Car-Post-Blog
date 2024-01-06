@@ -19,8 +19,8 @@
     <?php if(isset($_SESSION['user'])): ?>
         <div class="nav-profile">
             <div class="user-info-nav">
-                <a class="profile-btn" href="../profile.php?username=<?= $_SESSION['user']['username']?>"><?= $_SESSION['user']['username'] ?></a>
-                <small><?= $_SESSION['user']['role'] ?></small>
+                <p><a class="profile-btn" href="../profile.php?username=<?= $_SESSION['user']['username']?>"><?= $_SESSION['user']['username'] ?></a></p>
+                <p><small><?= $_SESSION['user']['role'] ?></small></p>
             </div>
             <a class="logout-btn" href="../controller/logout.php">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
@@ -30,4 +30,4 @@
             <button class="sign-up"><a href="sign-up.php">Sign Up</a></button>
         </div>
     <?php endif ?>
-</nav>
+    </nav>

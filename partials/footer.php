@@ -6,17 +6,19 @@
       <div class="faq-footer">
         <h2>FAQ</h2>
         <ul>
-          <li><a href="">How to write an article?</a></li>
-          <li><a href="">Who can see my post?</a></li>
-          <li><a href="">Who can edit my post?</a></li>
-          <li><a href="">Rules</a></li>
+          <li><a href="faq.php">How to write an article?</a></li>
+          <li><a href="faq.php">Who can see my post?</a></li>
+          <li><a href="faq.php">Who can edit my post?</a></li>
+          <li><a href="faq.php">Rules</a></li>
         </ul>
       </div>
       <div class="my-account-footer">
-        <h2>My Account</h2>
+        <h2>Categories</h2>
         <ul>
-          <li><a href="">My articles</a></li>
-          <li><a href="">My profile</a></li>
+          <li><a href="../category.php?category=News">News</a></li>
+          <li><a href="../category.php?category=Interesting facts">Interesting facts</a></li>
+          <li><a href="../category.php?category=Reviews">Reviews</a></li>
+          <li><a href="../category.php?category=Technology">Technology</a></li>
         </ul>
       </div>
       <div class="contact-admin-footer">

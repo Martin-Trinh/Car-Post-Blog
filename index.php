@@ -18,6 +18,7 @@ if(!isset($_SESSION['error'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Styling -->
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style-print.css" media="print"/>
     <!-- Script -->
     <script src="javascript/themeToggle.js" defer></script>
   </head>
@@ -33,8 +34,8 @@ if(!isset($_SESSION['error'])){
         </p>
         <button class="write-btn"><a href="addPost.php">Write an article</a></button>
       </div>
+      <?php include 'partials/notification.php' ?>
     </header>
-    <?php include 'partials/notification.php' ?>
     <main class="container">
       <?php include 'partials/toTopBtn.php';
             include 'partials/themeBtn.php'; 

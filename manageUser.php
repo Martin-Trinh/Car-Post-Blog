@@ -1,14 +1,15 @@
 <?php
 session_start();
-require_once('../config/db_config.php');
-require_once('../model/UserRepository.php');
-require_once('../services/Pagination.php');
+require_once('config/db_config.php');
+require_once('model/UserRepository.php');
+require_once('model/PostRepository.php');
+require_once('services/Pagination.php');
 
 
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
   $_SESSION['error'][] = 'Cannot access this page!';
-  header('Location: ../index.php');
+  header('Location: index.php');
   die();
 }
 if (!isset($_GET['page']))
@@ -22,44 +23,47 @@ $totalUser = $userRepository->countUsers();
 $allUsers = $userRepository->selectAllUser($postPerPage, ($page - 1) * $postPerPage);
 $pagination = new Pagination($postPerPage, $totalUser);
 $pageLinks = $pagination->getPageLinks($page);
+
+$postRepo = new PostRepository($conn);
+
 ?>
 <?php
-include '../partials/header.php';
-include '../partials/notification.php'
+include 'partials/header.php';
+include 'partials/notification.php'
 ?>
 <main class="container">
   <?php
-  include '../partials/toTopBtn.php';
-  include '../partials/themeBtn.php';
+  include 'partials/toTopBtn.php';
+  include 'partials/themeBtn.php';
   ?>
   <section class="trending-article">
+  <h2 class="section-heading">Manage User</h2>
     <?php if (!isset($allUsers) || count($allUsers) === 0) : ?>
       <div class="server-msg error">Cannot find this profile</div>
     <?php else : ?>
-      <h2 class="section-heading">Manage users</h2>
       <div class="trending-list">
         <?php for ($i = 0; $i < count($allUsers); $i++) : ?>
           <?php if ($allUsers[$i]['user_id'] !== $_SESSION['user']['user_id']) : ?>
             <article class="article user-manage">
               <div class="user-info">
-                <p>Username: <?= $allUsers[$i]['username'] ?></p>
+                <p>Username: <a href="profile.php?username=<?= $allUsers[$i]['username']?>"><?= $allUsers[$i]['username'] ?></a></p>
                 <div class="user-role-update">
-                  <p>Role: </p>
+                  <p>Role: <?= $allUsers[$i]['role']?></p>
                   <?php if ($allUsers[$i]['role'] === 'admin') : ?>
-                    <a class="logout-btn" href="../controller/updateRole.php?username=<?= $allUsers[$i]['username'] ?>&role=user">Demote to user</a>
+                    <a class="logout-btn" href="controller/updateRole.php?username=<?= $allUsers[$i]['username'] ?>&role=user">Demote to user</a>
                   <?php else : ?>
-                    <a class="logout-btn" href="../controller/updateRole.php?username=<?= $allUsers[$i]['username'] ?>&role=admin">Promote to admin</a>
+                    <a class="logout-btn" href="controller/updateRole.php?username=<?= $allUsers[$i]['username'] ?>&role=admin">Promote to admin</a>
                   <?php endif ?>
                 </div>
               </div>
                 <div class="user-analytic">
                   <div class="total">
                     <p>Total posts: </p>
-                    <p>1</p>
+                    <p><?= $postRepo->countPostFromUser($allUsers[$i]['user_id']) ?></p>
                   </div>
                   <div class="total">
                     <p>Total likes: </p>
-                    <p>1</p>
+                    <p><?= $postRepo->getLikeFromUser($allUsers[$i]['user_id']) ?></p>
                   </div>
                 </div>
             </article>
@@ -93,4 +97,4 @@ include '../partials/notification.php'
     <?php endif ?>
   </section>
 </main>
-<?php include '../partials/footer.php'; ?>
+<?php include 'partials/footer.php'; ?>

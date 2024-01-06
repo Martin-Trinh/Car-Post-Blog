@@ -7,6 +7,8 @@ require_once('../model/Validation.php');
 if(isset($_POST['submit'])){
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_POST['username'] = $username;
+    $_POST['password'] = $password;
     // validation
     $errorMsg;
     $validation = new Validation();
