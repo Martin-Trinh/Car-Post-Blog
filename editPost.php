@@ -53,8 +53,8 @@ if (isset($post)) {
     <?php if (!isset($post)) : ?>
         <div class="server-msg error">Cannot edit this post</div>
     <?php else : ?>
-        <script src="javascript/validationWritePost.js" defer></script>
-        <script src="javascript/validation.js" defer></script>
+        <!-- <script src="javascript/validationWritePost.js" defer></script>
+        <script src="javascript/validation.js" defer></script> -->
         <div class="container form-container add-post-container">
             <h2>Write an article</h2>
             <form action="./controller/editPostController.php" method="POST" id="form" enctype="multipart/form-data">
@@ -69,10 +69,10 @@ if (isset($post)) {
                     <label for="category">Choose category</label>
                     <select name="category" id="category">
                         <option <?= $categoryValue === '' ? 'selected' : '' ?> value="">--Please select an option--</option>
-                        <option <?= $categoryValue === 'Technology' ? 'selected' : '' ?> value="tech">Technology</option>
-                        <option <?= $categoryValue === 'News' ? 'selected' : '' ?> value="news">News</option>
-                        <option <?= $categoryValue === 'Review' ? 'selected' : '' ?> value="review">Reviews</option>
-                        <option <?= $categoryValue === 'Interesting facts' ? 'selected' : '' ?> value="facts">Interesting facts</option>
+                        <option <?= $categoryValue === 'Technology' ? 'selected' : '' ?> value="Technology">Technology</option>
+                        <option <?= $categoryValue === 'News' ? 'selected' : '' ?> value="News">News</option>
+                        <option <?= $categoryValue === 'Review' ? 'selected' : '' ?> value="Review">Reviews</option>
+                        <option <?= $categoryValue === 'Interesting facts' ? 'selected' : '' ?> value="Interesting facts">Interesting facts</option>
                     </select>
                     <small><?= $categoryErr ?></small>
                 </div>

@@ -27,8 +27,8 @@ unset($_SESSION['formData']);
 <main class="container">
     <?php include 'partials/toTopBtn.php';
     include 'partials/themeBtn.php'; ?>
-    <script src="javascript/validationWritePost.js" defer></script>
-    <script src="javascript/validation.js" defer></script>
+    <!-- <script src="javascript/validationWritePost.js" defer></script>
+    <script src="javascript/validation.js" defer></script> -->
     <div class="container form-container add-post-container">
         <h2>Write an article</h2>
         <form action="./controller/addPostController.php" method="POST" id="form" enctype="multipart/form-data">

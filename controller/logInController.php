@@ -8,8 +8,8 @@ if(isset($_POST['submit'])){
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $_POST['username'] = $username;
-    $_POST['password'] = $password;
     // validation
+    $_POST['password'] = $password;
     $errorMsg;
     $validation = new Validation();
     if($validation->usernameValidate($username) &&
@@ -26,7 +26,6 @@ if(isset($_POST['submit'])){
                 $_SESSION['user']['user_id'] = $user['user_id'];
                 $_SESSION['user']['username'] = $user['username'];
                 $_SESSION['user']['role'] = $user['role'];
-
             }else{
                 $errorMsg['password'] = 'Incorrect password';
             }

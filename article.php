@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     <script src="javascript/likePost.js" defer></script>
     <?php if (isset($post) && $post) : ?>
         <article class="container single-article">
-            <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_id'] === $post['user_id']) : ?>
+            <?php if ((isset($_SESSION['user']) && $_SESSION['user']['user_id'] === $post['user_id']) || $_SESSION['user']['role'] === 'admin') : ?>
                 <button><a href="editPost.php?id=<?= $id ?>">Edit</a></button>
                 <button><a href="controller/deletePostController.php?id=<?= $id ?>">Delete</a></button>
             <?php endif ?>
