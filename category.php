@@ -43,7 +43,7 @@ include 'partials/notification.php'
         <?php for ($i = 0; $i < count($allPosts); $i++) : ?>
           <article class="article">
             <div class="article-img">
-              <img src="img/<?= $allPosts[$i]['thumbnail'] ?>" alt="article img" width="100" height="350" />
+              <img src="img/<?= $allPosts[$i]['thumbnail'] ?>" alt="article img" width="100" height="350">
             </div>
             <div class="article-info">
               <h3 class="article-heading">

@@ -21,9 +21,9 @@ if(isset($_GET['id'])){
     $post =$postRepo->selectPostById($id);
     if(isset($post)){
         // check if post belong to the user
-        if($post['user_id'] !== $_SESSION['user']['user_id']){
+        if($post['user_id'] !== $_SESSION['user']['user_id'] && $_SESSION['user']['role'] !== 'admin'){
             $_SESSION['error'][] = 'Cannot delete this post';
-            header('Location: ../article.php?id'. $id);
+            header('Location: ../article.php?id='. $id);
             die();
         }
         // delete file in folder & delete post from db

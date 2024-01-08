@@ -7,7 +7,7 @@ session_start();
             include 'partials/themeBtn.php'; ?>
     <script src="javascript/faqToggle.js" defer></script>
     <div class="faq-container container">
-      <h2>Frequently asked question</h2>
+      <h1>Frequently asked question</h1>
       <?php 
         for ($i = 0; $i < 4; $i++){
           include 'partials/question.php';  

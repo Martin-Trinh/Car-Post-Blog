@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
     <script src="javascript/likePost.js" defer></script>
     <?php if (isset($post) && $post) : ?>
         <article class="container single-article">
-            <?php if ((isset($_SESSION['user']) && $_SESSION['user']['user_id'] === $post['user_id']) || $_SESSION['user']['role'] === 'admin') : ?>
+            <?php if (isset($_SESSION['user']) && ($_SESSION['user']['user_id'] === $post['user_id'] || $_SESSION['user']['role'] === 'admin')) : ?>
                 <button><a href="editPost.php?id=<?= $id ?>">Edit</a></button>
                 <button><a href="controller/deletePostController.php?id=<?= $id ?>">Delete</a></button>
             <?php endif ?>
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
             <div class="article-img">
-                <img src="img/<?= $post['thumbnail'] ?>" alt="article img"  width="300" height="500"/>
+                <img src="img/<?= $post['thumbnail'] ?>" alt="article img"  width="300" height="500">
             </div>
             <div class="article-body">
                 <?= $post['body'] ?>

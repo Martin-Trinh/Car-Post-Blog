@@ -59,7 +59,7 @@ if (isset($post)) {
         <!-- <script src="javascript/validationWritePost.js" defer></script>
         <script src="javascript/validation.js" defer></script> -->
         <div class="container form-container add-post-container">
-            <h2>Write an article</h2>
+            <h1>Write an article</h1>
             <form action="./controller/editPostController.php" method="POST" id="form" enctype="multipart/form-data">
                 <div class="form-field <?= $titleState ?>">
                     <label for="title-post">Title</label>
@@ -80,7 +80,7 @@ if (isset($post)) {
                     <small><?= $categoryErr ?></small>
                 </div>
                 <div class="form-field <?= $bodyState ?>">
-                    <label for="category-select">Article body</label>
+                    <label for="article-body">Article body</label>
                     <textarea name="article-body" id="article-body" rows="10" placeholder="Write your article"><?= $bodyValue ?></textarea>
                     <i class="fa-solid fa-circle-check"></i>
                     <i class="fa-solid fa-circle-exclamation"></i>

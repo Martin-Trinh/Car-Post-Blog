@@ -20,9 +20,9 @@ if (isset($_POST['submit'])) {
     $_POST['user-id'] = filter_var($_POST['user-id'], FILTER_SANITIZE_NUMBER_INT);
 
     // check if post belong to the user
-    if($_POST['user-id'] != $_SESSION['user']['user_id']){
+    if($_POST['user-id'] != $_SESSION['user']['user_id'] && $_SESSION['user']['role'] != 'admin'){
         $_SESSION['error'][] = 'Cannot edit this post';
-        $_SESSION['error'][] = $_POST['user-id'] . " " . $_SESSION['user']['user_id'];
+        $_SESSION['error'][] = "Post id:". $_POST['user-id'] . " User id" . $_SESSION['user']['user_id'];
         header('Location: ../article.php?id='. $_POST['id']);
         die();
     }

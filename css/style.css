@@ -5,9 +5,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-html{
-    scroll-behavior: smooth;
-}
+
 
 /* || variables */
 
@@ -45,7 +43,9 @@ html{
 
 /* || GENERAL STYLES */
 
-
+html{
+    scroll-behavior: smooth;
+}
 body{
     font-family: var(--ff-normal);
     font-weight: var(--fw);
@@ -69,6 +69,16 @@ a:visited{
     color: var(--text-color);
 }
 
+.btn {
+    border-radius: 2rem;
+    border: 2px solid var(--decor-color);
+    padding: 1rem;
+    transition: var(--transition-slow);
+}
+button:hover, .btn:hover{
+    background-color: var(--decor-color);
+    font-weight: var(--fw-bold)
+}
 
 button{
     display: inline-block;
@@ -85,10 +95,7 @@ button{
     text-decoration: none;
     transition: var(--transition-normal)
 }
-button:hover{
-    background-color: var(--decor-color);
-    font-weight: var(--fw-bold);
-}
+
 li {
     list-style: none;
 }
@@ -189,9 +196,8 @@ a.disabled{
 
 .theme-switch{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    margin-bottom: 2rem ;
 }
 
 .theme-switch input {
@@ -202,38 +208,33 @@ a.disabled{
     background-color: var(--bg-alt);
     border: var(--border-thin) var(--decor-color);
     cursor: pointer;
-    width: 4rem;
-    height: 2rem;
-    position: absolute;
-}
-.color-switch-toggle{
-    background-color: var(--decor-color);
-    width: 1.6rem;
-    height: 1.6rem;
-    cursor:pointer;
-    position: absolute;
-    border-radius: 5rem;
-    top: 0.1rem;
-    left: 0.1rem;
-    transition: var(--transition-normal);
+    width: 4.5rem;
+    height: 2.5rem;
+    position: relative;
 }
 
+.color-switch::after{
+    content: '';
+    width: 1.7rem;
+    height: 1.7rem;
+    background-color: var(--bg-primary);
+    position: absolute;
+    left: 0.3rem;
+    top: 0.3rem;
+    border-radius: 50%;
+}
 .color-switch::before{
     content: 'Dark mode';
     position: absolute;
-    display: inline-block;
     left: -7rem;
-    top: 0.2rem
+    top:0.4rem
 }
-
-#color-switch:checked ~ label .color-switch-toggle{
+#color-switch:checked + label:after{
     transform: translateX(2rem);
 }
-
-#color-switch:checked ~ .color-switch::before{
+#color-switch:checked + label:before{
     content: 'Light mode';
 }
-
 /* || to top btn */
 
 .to-top-btn{
@@ -251,6 +252,7 @@ a.disabled{
 .to-top-btn i{
     font-size: 2rem;
     transition: var(--transition-normal);
+    margin-top: .5rem;
 }
 .to-top-btn:hover i{
     transform: translateY(-0.2rem);
@@ -281,7 +283,7 @@ header {
     gap: 2rem;
     color: #e8e8e8;
 }
-.intro-text h2{
+.intro-text h1{
     font-size: 3rem;
 }
 
@@ -322,10 +324,14 @@ nav {
     gap: 0.5rem;
     width: 20%;
 }
-.login button{
+.login a{
     width:7rem;
     height: fit-content;
+    padding: 0.5rem;
+    border: 2px solid var(--decor-color);
+    border-radius: 2rem;
 }
+
 .menu a:hover{
     color:var(--decor-color);
 }
@@ -393,6 +399,11 @@ nav {
 .article-heading:hover a{
     color: var(--text-hover-color);
 }
+.article-description{
+    word-wrap: break-word;
+    overflow: hidden;
+    max-width: 30rem;
+}
 
 .article-data{
     width: 100%;
@@ -434,7 +445,7 @@ nav {
 .latest-article .category-btn{
     padding: 0.2rem 0.5rem;
 }
-.latest-article h3 a{
+.latest-article h2 a{
     font-size: 1rem;
 }
 
@@ -457,7 +468,7 @@ footer p{
 footer a:hover{
     color: var(--text-hover-color);
 }
-footer h2{
+footer h1{
     margin-bottom: 1rem;
     font-weight: var(--fw-md);
     font-size: 1.2rem;
@@ -472,13 +483,10 @@ footer h2{
     position: absolute;
     bottom: 0;
 }
+.footer-links h2{
+    margin-bottom: 1rem;
 
-.footer-contact{
-    font-size: 2rem;
-    display: flex;
-    gap: 2rem;
 }
-
 /* || SINGLE ARTICLE */
 
 .page-banner{
@@ -493,7 +501,7 @@ footer h2{
 }
 .single-article-heading{
     font-size: 2rem;
-    margin-bottom: 3rem;
+    margin: 3rem 0rem;
 }
 
 .single-article p{
@@ -525,7 +533,7 @@ footer h2{
 .faq-container{
     width: 70%
 }
-.faq-container h2{
+.faq-container h1{
     font-size: 2rem;
 }
 .content{
@@ -535,7 +543,7 @@ footer h2{
     padding: 1rem 2rem
 }
 
-.content h3{
+.content h2{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -564,7 +572,7 @@ footer h2{
     padding: 1rem 2rem;
     border-radius: 1rem;
 }
-.form-container h2{
+.form-container h1{
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -672,8 +680,15 @@ input:focus{
 
 /* || manage user */
 .user-manage{
+    display: flex;
     justify-content: space-between;
+    flex: 1;
+    background-color: var(--bg-alt);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
 }
+
 .user-info, .user-analytic{
     display: flex;
     flex-direction: column;
@@ -688,7 +703,7 @@ input:focus{
 }
 .user-analytic .total{
     display: flex;
-    gap:2rem;
+    gap:.5rem;
 }
 .user-manage p{
     font-size: 1.2rem;

@@ -24,7 +24,7 @@ unset($_SESSION['formData']);
     <!-- <script src="javascript/validation.js" defer></script>
     <script src="javascript/validationSignUp.js" defer></script> -->
     <div class="container form-container">
-        <h2>Sign Up</h2>
+        <h1>Sign Up</h1>
         <form action="controller/signUpController.php" method="POST" id="form">
             <div class="form-field <?= $usernameState ?>">
                 <label for="username">Username</label>

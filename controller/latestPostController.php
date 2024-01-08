@@ -58,15 +58,15 @@ foreach($data as $post){
 
   $postsHtml .= '<article class="article">
         <div class="article-img">
-          <img src="img/' .  $post['thumbnail'] .  '" alt="article img" width="100" height="200" />
+          <img src="img/' .  rawurlencode($post['thumbnail']) .  '" alt="article img" width="100" height="200">
         </div>
         <div class="article-info">
-          <h3 class="article-heading">
+          <h2 class="article-heading">
             <a href="article.php?id=' . $post['post_id'] .'">'.
               $post['title'] .
             '</a>
-          </h3>
-          <a class="category-btn" href="category.php?category='. $post['category'] .'">' . $post['category'] . '</a>
+          </h2>
+          <a class="category-btn" href="category.php?category='. rawurlencode($post['category']) .'">' . $post['category'] . '</a>
           <p class="article-description">
             '. substr($post['body'], 0, 150) . '  ...' .
           '</p>

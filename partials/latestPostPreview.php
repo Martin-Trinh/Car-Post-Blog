@@ -5,5 +5,5 @@
   <div class="pagination"></div>
 
   <!-- script -->
-  <script src="../javascript/loadLatestPosts.js"></script>
+  <script src="javascript/loadLatestPosts.js"></script>
 </section>

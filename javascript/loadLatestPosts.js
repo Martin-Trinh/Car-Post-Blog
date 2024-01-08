@@ -1,6 +1,6 @@
 async function loadPage(page = 1){
     try{
-        const res = await fetch(`../controller/latestPostController.php?page=${page}`)
+        const res = await fetch(`controller/latestPostController.php?page=${page}`)
         const data = await res.json()
 
         const pageLinks = document.querySelector('.pagination')

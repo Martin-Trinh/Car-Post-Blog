@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () =>{
     const likeBtn = document.getElementById('likePost')
     likeBtn.addEventListener('click', ()=>{
         let data = {
-            post_id : likeBtn.getAttribute('post-id')
+            post_id : likeBtn.dataset.postId
         }
-        fetch('../controller/likeController.php', {
+        fetch('controller/likeController.php', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'

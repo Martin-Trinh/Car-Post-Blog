@@ -48,15 +48,15 @@ include 'partials/notification.php'
       <div class="trending-list">
         <?php for ($i = 0; $i < count($allUsers); $i++) : ?>
           <?php if ($allUsers[$i]['user_id'] !== $_SESSION['user']['user_id']) : ?>
-            <article class="article user-manage">
+            <div class="user-manage">
               <div class="user-info">
-                <p>Username: <a href="profile.php?username=<?= $allUsers[$i]['username']?>"><?= $allUsers[$i]['username'] ?></a></p>
+                <p>Username: <a href="profile.php?username=<?= rawurlencode($allUsers[$i]['username'])?>"><?= $allUsers[$i]['username'] ?></a></p>
                 <div class="user-role-update">
                   <p>Role: <?= $allUsers[$i]['role']?></p>
                   <?php if ($allUsers[$i]['role'] === 'admin') : ?>
-                    <a class="logout-btn" href="controller/updateRole.php?username=<?= $allUsers[$i]['username'] ?>&role=user">Demote to user</a>
+                    <a class="logout-btn" href="controller/updateRole.php?username=<?= rawurlencode($allUsers[$i]['username']) ?>&role=user">Demote to user</a>
                   <?php else : ?>
-                    <a class="logout-btn" href="controller/updateRole.php?username=<?= $allUsers[$i]['username'] ?>&role=admin">Promote to admin</a>
+                    <a class="logout-btn" href="controller/updateRole.php?username=<?= rawurlencode($allUsers[$i]['username']) ?>&role=admin">Promote to admin</a>
                   <?php endif ?>
                 </div>
               </div>
@@ -70,7 +70,7 @@ include 'partials/notification.php'
                     <p><?= $postRepo->getLikeFromUser($allUsers[$i]['user_id']) ?></p>
                   </div>
                 </div>
-            </article>
+            </div>
           <?php endif ?>
         <?php endfor ?>
       </div>
