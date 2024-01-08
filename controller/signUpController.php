@@ -3,7 +3,11 @@ session_start();
 require_once '../config/db_config.php';
 require_once '../model/Validation.php';
 require_once '../model/UserRepository.php';
-
+/**
+ * This controller handle sign up logic for user
+ * Create user in database if data is valid
+ * Return data back if data is invalid
+ */
 
 if(isset($_POST['submit'])){
     // sanitize data
@@ -17,25 +21,25 @@ if(isset($_POST['submit'])){
     // validation
     $validator = new Validation();
     $validator->usernameValidate($username);
+    // validate if confirm password match password
     if($validator->passwordValidate($password) && 
-        $validator->confirmPasswordValidate($confirmPassword))
+        $validator->confirmPasswordValidate($password, $confirmPassword))
     {
-        $validator->twoPasswordValidate($password, $confirmPassword);
-    }
-    $errorMsg = $validator->getErrorMsg();
-    $userRepo = new UserRepository($conn);
-    if($userRepo->findUserByUsername($username)){
-        $errorMsg['username'] = 'Username already taken';
-        return false;
+        // check if username exists in database
+        $userRepo = new UserRepository($conn);
+        if($userRepo->findUserByUsername($username))
+            $errorMsg['username'] = 'Username already taken';
+    }else{
+        $errorMsg = $validator->getErrorMsg();
     }
 
-    if(isset($errorMsg) && $errorMsg){
+    if(isset($errorMsg)){
         $_SESSION['formData'] = $_POST;
-        $_SESSION['errorMsg'] = $validator->$errorMsg;
+        $_SESSION['errorMsg'] = $errorMsg;
         header('Location: '. '../sign-up.php');
         die();
     }else{
-        // createUser
+        // createUser in databse
         $userRepo = new UserRepository($conn);
         if($userRepo->createUser($username, $password, 'user')){
             $_SESSION['success'][] = 'Signed up successfully';

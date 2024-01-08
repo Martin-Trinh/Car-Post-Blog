@@ -4,15 +4,15 @@ session_start();
 $usernameState = isset( $_SESSION['errorMsg']['username'])  ? 'error' : '';
 $passwordState = isset($_SESSION['errorMsg']['password'])  ? 'error' : '';
 $confirmPassState = isset($_SESSION['errorMsg']['confirmPass'])  ? 'error' : '';
-// value 
+// set value form field
 $usernameValue = $_SESSION['formData']['username'] ?? '';
 $passwordValue = $_SESSION['formData']['password'] ?? '';
 $confirmPassValue = $_SESSION['formData']['confirm-password'] ?? '';
-// error msg
+// error messages display 
 $usernameErr =  $_SESSION['errorMsg']['username'] ?? '';
 $passwordErr = $_SESSION['errorMsg']['password'] ?? '';
 $confirmPassErr = $_SESSION['errorMsg']['confirmPass'] ?? '';
-
+// unset session variable 
 unset($_SESSION['errorMsg']);
 unset($_SESSION['formData']);
 ?>
@@ -21,8 +21,8 @@ unset($_SESSION['formData']);
 <main class="container">
     <?php include 'partials/toTopBtn.php';
          include 'partials/themeBtn.php'; ?>
-    <script src="javascript/validation.js" defer></script>
-    <script src="javascript/validationSignUp.js" defer></script>
+    <!-- <script src="javascript/validation.js" defer></script>
+    <script src="javascript/validationSignUp.js" defer></script> -->
     <div class="container form-container">
         <h2>Sign Up</h2>
         <form action="controller/signUpController.php" method="POST" id="form">

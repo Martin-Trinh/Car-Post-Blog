@@ -3,7 +3,14 @@ require_once ('../config/db_config.php');
 require_once('../model/PostRepository.php');
 require_once('../services/Pagination.php');
 require_once('../services/convertDate.php');
+/**
+ * This controller provide data for lastest posts fetch() by page
+ * Get the posts from database and generate html content from it
+ * Return HTML in string to frontend
+ * Html consist of post's content and links for pagination
+ */
 
+// check if id page is set
 if(!isset($_GET['page'])){
   echo json_encode( array(
     'postsHtml' => '<div class="server-msg error">Error cannot get pages!</div>',
@@ -11,15 +18,15 @@ if(!isset($_GET['page'])){
   ));
   die();
 }
-
+// sanitize data
 $pageNum = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
 $postPerPage = 6;
 
 $postRepo = new PostRepository($conn);
-
+// get total record of all posts in database
 $totalPosts = $postRepo->countAllPosts();
 $pagination = new Pagination($postPerPage, $totalPosts);
-
+// check id page number is valid
 if(!is_int($pageNum) || $pageNum > $pagination->getTotalPage()){
   echo json_encode( array(
     'postsHtml' => '<div class="server-msg error">Error cannot get pages!</div>',
@@ -27,6 +34,7 @@ if(!is_int($pageNum) || $pageNum > $pagination->getTotalPage()){
   ));
   die();
 }
+// generate html for pagination links
 $prevLink = $pageNum === 1 ? '<li><a class="disabled">Prev</a></li>' : '<li><a>Prev</a></li>';
 $nextLink = $pageNum === $pagination->getTotalPage() ? '<li><a class="disabled">Next</a></li>': '<li><a>Next</a></li>';
 $pageLinks = $pagination->getPageLinks($pageNum);
@@ -42,10 +50,10 @@ for($i = 0; $i < count($pageLinks); $i++){
 
 }
 $paginationHtml .= $nextLink . '</ul>';
-
+// select posts by page
 $data = $postRepo->selectPostsPagination($postPerPage, ($pageNum - 1) * $postPerPage);
 $postsHtml = '';
-
+// generate html for post's content
 foreach($data as $post){
 
   $postsHtml .= '<article class="article">
@@ -78,10 +86,12 @@ if($postsHtml === ''){
   $postsHtml = '<div class="server-msg error">No latest article</div>';
   $paginationHtml = '';
 }
+// store generated data
 $response = array(
 'postsHtml' => $postsHtml,
 'pageLinks' => $paginationHtml,
 'pageNum' => $pageNum
 );
+// send data back to the user as json
 echo json_encode($response);
 

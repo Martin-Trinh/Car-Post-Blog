@@ -7,18 +7,20 @@ require_once('services/convertDate.php');
 
 
 if (isset($_GET['category'])) {
+  // set the page to 1 if page parameter is not set
   if(!isset($_GET['page']))
     $page = 1;
   else
     $page = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
-  
   $category = filter_var($_GET['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  // number of posts to display on 1 page
   $postPerPage = 5;
-
+  // select posts by category using limit and offset
   $postRepo = new PostRepository($conn);
   $allPosts = $postRepo->selectPostsByCategory($category, $postPerPage, ($page - 1) * $postPerPage);
+  // get total number of posts in this category
   $totalPost = $postRepo->countPostsByCategory($category);
-
+  // create pagination links
   $pagination = new Pagination($postPerPage, $totalPost);
   $pageLinks = $pagination->getPageLinks($page);
 }

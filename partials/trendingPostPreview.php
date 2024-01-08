@@ -3,7 +3,7 @@
   require_once('model/PostRepository.php');
   require_once('services/convertDate.php');
 
-  // get array of posts from database
+  // get 3 posts with mosts likes from database
   $postRepo = new PostRepository($conn);
   $allPosts = $postRepo->selectTrendingPosts(3);
 ?>

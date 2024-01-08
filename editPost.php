@@ -3,40 +3,43 @@ session_start();
 require_once 'config/db_config.php';
 require_once('model/PostRepository.php');
 
-
+// check if user is logged in
 if(!isset($_SESSION['user'])){
     $_SESSION['error'][] = 'Please log in to edit post';
     header('Location: login.php');
     die();
 }
-
+// check if post id is set
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    // select post by id
     $postRepo = new PostRepository($conn);
-
     $post = $postRepo->selectPostById($id);
-    if($post['user_id'] !== $_SESSION['user']['user_id']){
+    // check if post belong to the user and user is admin
+    if($post['user_id'] !== $_SESSION['user']['user_id'] && $_SESSION['user']['role'] !== 'admin'){
         unset($post);
     }
 }
 if (isset($post)) {
+    //set the state of the form fields for color display
     $titleState = isset($_SESSION['errorMsg']['title-post']) ? 'error' : '';
     $bodyState = isset($_SESSION['errorMsg']['article-body']) ? 'error' : '';
     $thumbnailState = isset($_SESSION['errorMsg']['thumbnail']) ? 'error' : '';
     $categoryState = isset($_SESSION['errorMsg']['category']) ? 'error' : '';
-
+    //  set the value of the form fields
     if (isset($_SESSION['formData'])) {
         $titleValue = $_SESSION['formData']['title-post'] ?? '';
         $bodyValue = $_SESSION['formData']['article-body'] ?? '';
         $thumbnailValue = $_SESSION['formData']['thumbnail'] ?? '';
         $categoryValue = $_SESSION['formData']['category'] ?? '';
     } else {
+        // set the value of the form fields from the database
         $titleValue = $post['title'];
         $bodyValue = $post['body'];
         $thumbnailValue = $post['thumbnail'];
         $categoryValue = $post['category'];
     }
-
+    // set the error messages
     $titleErr = $_SESSION['errorMsg']['title-post'] ?? '';
     $bodyErr = $_SESSION['errorMsg']['arcticle-body'] ?? '';
     $thumbnailErr = $_SESSION['errorMsg']['thumbnail'] ?? '';

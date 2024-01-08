@@ -1,4 +1,5 @@
 <?php
+// init session variables for notifications
 $successMsg = $_SESSION['success'];
 $errorMsg = $_SESSION['error'];
 $_SESSION['success'] = array();

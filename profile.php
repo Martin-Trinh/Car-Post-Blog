@@ -6,7 +6,9 @@ require_once('model/UserRepository.php');
 require_once('services/Pagination.php');
 require_once('services/convertDate.php');
 
+// check if username is in GET request
 if (isset($_GET['username'])) {
+  // set page number to 1 if page number is not set
   if(!isset($_GET['page']))
     $page = 1;
   else
@@ -16,12 +18,15 @@ if (isset($_GET['username'])) {
 
   $userRepo = new UserRepository($conn);
   $username = filter_var($_GET['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  // find user by username
   $user = $userRepo->findUserByUsername($username);
   
   $postRepo = new PostRepository($conn);
+  // get total post from user
   $totalPost = $postRepo->countPostFromUser($user['user_id']);
+  // get all posts from user using pagination
   $allPosts = $postRepo->selectPostsFromUser($user['user_id'], $postPerPage, ($page - 1) * $postPerPage);
-
+  // create pagination
   $pagination = new Pagination($postPerPage, $totalPost);
   $pageLinks = $pagination->getPageLinks($page);
 }

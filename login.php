@@ -1,15 +1,15 @@
 <?php 
 session_start();
-
+// set the state of the form fields for color display
 $usernameState = isset($_SESSION['errorMsg']['username']) ? 'error': '';
 $passwordState = isset($_SESSION['errorMsg']['password']) ? 'error': '';
-
+// set the value of the form fields
 $usernameValue = $_SESSION['formData']['username'] ?? '';
 $passwordValue = $_SESSION['formData']['password'] ?? '';
-
+// set the error messages
 $usernameErr = $_SESSION['errorMsg']['username'] ?? '';
 $passwordErr = $_SESSION['errorMsg']['password'] ?? '';
-
+// unset session variables
 unset($_SESSION['errorMsg']);
 unset($_SESSION['formData']);
 ?>   
@@ -17,8 +17,8 @@ unset($_SESSION['formData']);
     <main class="container">
     <?php include 'partials/toTopBtn.php';
             include 'partials/themeBtn.php'; ?>
-        <script src="javascript/validation.js" defer></script>
-        <script src="javascript/validationLogin.js" defer></script>
+        <!-- <script src="javascript/validation.js" defer></script>
+        <script src="javascript/validationLogin.js" defer></script> -->
         <div class="container form-container">
             <h2>Log In</h2>
             <form action="./controller/logInController.php" method="POST" id="form">

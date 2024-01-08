@@ -1,24 +1,30 @@
 <?php
 session_start();
+// check if user is logged in 
 if(!isset($_SESSION['user'])){
     $_SESSION['error'][] = 'Please log in to add post';
     header('Location: login.php');
     die();
 }
+// set the from to success or error state
 $titleState = isset($_SESSION['errorMsg']['title-post']) ? 'error' : '';
 $bodyState = isset($_SESSION['errorMsg']['article-body']) ? 'error' : '';
 $thumbnailState = isset($_SESSION['errorMsg']['thumbnail']) ? 'error' : '';
 $categoryState = isset($_SESSION['errorMsg']['category']) ? 'error' : '';
 
+// prefill form value from server
 $titleValue = $_SESSION['formData']['title-post'] ?? '';
 $bodyValue = $_SESSION['formData']['article-body'] ?? '';
 $thumbnailValue = $_SESSION['formData']['thumbnail'] ?? '';
 $categoryValue = $_SESSION['formData']['category'] ?? '';
 
+// prefill error messages from server
 $titleErr = $_SESSION['errorMsg']['title-post'] ?? '';
 $bodyErr = $_SESSION['errorMsg']['arcticle-body'] ?? '';
 $thumbnailErr = $_SESSION['errorMsg']['thumbnail'] ?? '';
 $categoryErr = $_SESSION['errorMsg']['category'] ?? '';
+
+// unset data from session variable
 unset($_SESSION['errorMsg']);
 unset($_SESSION['formData']);
 ?>
@@ -27,8 +33,8 @@ unset($_SESSION['formData']);
 <main class="container">
     <?php include 'partials/toTopBtn.php';
     include 'partials/themeBtn.php'; ?>
-    <!-- <script src="javascript/validationWritePost.js" defer></script>
-    <script src="javascript/validation.js" defer></script> -->
+    <script src="javascript/validationWritePost.js" defer></script>
+    <script src="javascript/validation.js" defer></script>
     <div class="container form-container add-post-container">
         <h2>Write an article</h2>
         <form action="./controller/addPostController.php" method="POST" id="form" enctype="multipart/form-data">

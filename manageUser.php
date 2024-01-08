@@ -6,21 +6,25 @@ require_once('model/PostRepository.php');
 require_once('services/Pagination.php');
 
 
-
+// check if user is logged in and if user is admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
   $_SESSION['error'][] = 'Cannot access this page!';
   header('Location: index.php');
   die();
 }
+// set the page to 1 if page parameter is not set
 if (!isset($_GET['page']))
   $page = 1;
 else
   $page = intval(filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT));
-
+// number of posts to display on 1 page
 $postPerPage = 5;
 $userRepository = new UserRepository($conn);
+// count all users from database
 $totalUser = $userRepository->countUsers();
+// select users using limit and offset
 $allUsers = $userRepository->selectAllUser($postPerPage, ($page - 1) * $postPerPage);
+// create pagination links
 $pagination = new Pagination($postPerPage, $totalUser);
 $pageLinks = $pagination->getPageLinks($page);
 

@@ -1,7 +1,11 @@
 <?php
+/**
+ * This controller handle logic for logout
+ * Unset the session and redirect user back to homepage
+ */
 session_start();
 session_unset();
-// session_destroy();
+// init notification variables again
 $_SESSION['success'] = array();
 $_SESSION['error'] = array();
 

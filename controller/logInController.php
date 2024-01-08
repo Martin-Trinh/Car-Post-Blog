@@ -3,13 +3,18 @@ session_start();
 require_once '../config/db_config.php';
 require_once('../model/UserRepository.php');
 require_once('../model/Validation.php');
-
+/**
+ * This controller handle the login form data 
+ * Log user in if data is valid and password match
+ * Return data back with error if data is invalid
+ */
 if(isset($_POST['submit'])){
+    // sanitize data
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $_POST['username'] = $username;
-    // validation
     $_POST['password'] = $password;
+    // validation
     $errorMsg;
     $validation = new Validation();
     if($validation->usernameValidate($username) &&
@@ -21,6 +26,7 @@ if(isset($_POST['submit'])){
         if(!$user){
             $errorMsg['username'] = 'Username does not exist';
         }else{
+            // verify password
             if(password_verify($password, $user['PASSWORD'])){
                 $_SESSION['success'][] = 'Log in successfuly';
                 $_SESSION['user']['user_id'] = $user['user_id'];
@@ -31,6 +37,7 @@ if(isset($_POST['submit'])){
             }
         }
     }else{
+        // save error messages from validation class 
         $errorMsg = $validation->getErrorMsg();
     }
     if(isset($errorMsg) && $errorMsg){

@@ -1,6 +1,6 @@
 <?php 
-// phpinfo();
 session_start();
+// init session variables for notifications
 if(!isset($_SESSION['success'])){
     $_SESSION['success'] = array();
 }

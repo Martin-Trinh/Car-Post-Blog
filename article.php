@@ -3,11 +3,10 @@ session_start();
 require_once('config/db_config.php');
 require_once('model/PostRepository.php');
 require_once('services/convertDate.php');
-
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    // select the post from database using post's id
     $postRepo = new PostRepository($conn);
-
     $post = $postRepo->selectPostById($id);
 }
 ?>
