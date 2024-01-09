@@ -8,7 +8,7 @@ There is 3 types of user on webpage - not logged in user, logged in user and adm
 * Not logged in user - can only read and browser article
 * Logged in user - can add an article on page, then edit/delete it 
 * Admin - has all the functionality ad logged in user, they can further edit/delete other user's posts. Admin a
-also the privelege to promote or demote user's role.
+also the privelege to promote or demote user's role.g
 
 ## Technology
 
@@ -18,12 +18,6 @@ also the privelege to promote or demote user's role.
 * PHP
 
 ## Page visual
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-![webpage-visual](https://imgur.com/zGdn7Cd)
-=======
-=======
->>>>>>> Stashed changes
 Homepage
 ![homepage-visual](https://i.imgur.com/zGdn7Cd.png)
 Pagination and posts displaying
@@ -46,10 +40,6 @@ Add posts form
 
 
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 
 
