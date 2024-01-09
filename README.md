@@ -18,21 +18,36 @@ also the privelege to promote or demote user's role.g
 * PHP
 
 ## Page visual
-Homepage
+### Homepage
+
 ![homepage-visual](https://i.imgur.com/zGdn7Cd.png)
-Pagination and posts displaying
+
+### Pagination and posts displaying
+
 ![pagination-visual](https://i.imgur.com/kf5LuJP.png)
-Display posts by category
+
+### Display posts by category
+
 ![posts-by-cat-visual](https://i.imgur.com/KQv1xp6.png)
-Single post display
+
+### Single post display
+
 ![single-post-visual](https://i.imgur.com/LhMoHVf.png)
-Display user's posts and user's info
+
+### Display user's posts and user's info
+
 ![user-profile-visual](https://i.imgur.com/gSo1Yi3.png)
-Manage users of admin page
+
+### Manage users of admin page
+
 ![user-profile-visual](https://i.imgur.com/1vYsTdh.png)
-Login form 
+
+### Login form 
+
 ![login-form-visual](https://i.imgur.com/1HeisZd.png)
-Add posts form
+
+### Add posts form
+
 ![add-post-visual](https://i.imgur.com/5nch1R0.png)
 
 
