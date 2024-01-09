@@ -18,7 +18,38 @@ also the privelege to promote or demote user's role.
 * PHP
 
 ## Page visual
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ![webpage-visual](https://imgur.com/zGdn7Cd)
+=======
+=======
+>>>>>>> Stashed changes
+Homepage
+![homepage-visual](https://i.imgur.com/zGdn7Cd.png)
+Pagination and posts displaying
+![pagination-visual](https://i.imgur.com/kf5LuJP.png)
+Display posts by category
+![posts-by-cat-visual](https://i.imgur.com/KQv1xp6.png)
+Single post display
+![single-post-visual](https://i.imgur.com/LhMoHVf.png)
+Display user's posts and user's info
+![user-profile-visual](https://i.imgur.com/gSo1Yi3.png)
+Manage users of admin page
+![user-profile-visual](https://i.imgur.com/1vYsTdh.png)
+Login form 
+![login-form-visual](https://i.imgur.com/1HeisZd.png)
+Add posts form
+![add-post-visual](https://i.imgur.com/5nch1R0.png)
+
+
+
+
+
+
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
 
 
