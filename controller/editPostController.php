@@ -69,7 +69,10 @@ if (isset($_POST['submit'])) {
         header('Location: ' . '../article.php?id='. $_POST['id']);
         die();
     }else{
-        
+        $_SESSION['formData'] = $_POST;
+        $_SESSION['errorMsg'] = $validator->getErrorMsg();
+        header('Location: ' . '../editPost.php?id='. $_POST['id']);
+        die();
     }
 } else {
     header('Location: ' . '../index.php');
