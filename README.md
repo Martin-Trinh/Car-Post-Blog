@@ -164,22 +164,24 @@ also the privelege to promote or demote user's role
 
 ### Sign Up form
 
+* Sign up form with username, password and confirm password. Username must be unique. Password and confirm password must be matched.
+
 ![sign-up-form-visual](https://i.imgur.com/8Can8NH.png)
 
-* Sign up form with username, password and confirm password. Username must be unique. Password and confirm password must be matched.
 
 ### Add posts form
 
-![add-post-visual](https://i.imgur.com/5nch1R0.png)
-
 * User must fill every field. File type must be jpg, jpeg or png and size must be less than 2MB. Article body must be more than 10 word.
 
+![add-post-visual](https://i.imgur.com/5nch1R0.png)
+
 ### Edit form 
+
+* Edit form will be filled with current data from article. User can choose to edit any field. File input can be empty if user don't want to change article's image.
 
 ![edit-form-visual](https://i.imgur.com/zPTZhS0.png)
 
 
-* Edit form will be filled with current data from article. User can choose to edit any field. File input can be empty if user don't want to change article's image.
 
 
 
